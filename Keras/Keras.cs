@@ -10,64 +10,34 @@ using static Python.Runtime.Py;
 
 namespace Keras
 {
-    public class Keras : IDisposable
+    public class Keras
     {
-        public static Keras Instance => _instance.Value;
+        /***************************************************/
+        /**** Public Properties                         ****/
+        /***************************************************/
 
-        private static Lazy<Keras> _instance = new Lazy<Keras>(() =>
+        public static Keras Instance { get { return _instance.Value; } }
+
+        public dynamic keras { get; set; } = null;
+
+        public dynamic tensorflow { get; set; } = null;
+
+        public dynamic keras2onnx { get; set; } = null;
+
+        public dynamic tfjs { get; set; } = null;
+
+
+        /***************************************************/
+        /**** De/Constructors                           ****/
+        /***************************************************/
+
+        public Keras()
         {
-            var instance = new Keras();
-            instance.keras = InstallAndImport(Setup.KerasModule);
-
-            try
-            {
-                instance.tensorflow = InstallAndImport("tensorflow");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Warning! tensorflow is not installed. Required to load models");
-            }
-
-            try
-            {
-                instance.keras2onnx = InstallAndImport("onnxmltools");
-            }
-            catch (Exception ex)
-            {
-            }
-
-            try
-            {
-                instance.tfjs = InstallAndImport("tensorflowjs");
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return instance;
-        }
-        );
-
-        private static PyObject InstallAndImport(string module)
-        {
-            Console.WriteLine(module);
-            if(!PythonEngine.IsInitialized)
-                PythonEngine.Initialize();
-            var mod = Py.Import(module);
-            return mod;
+            PythonEngine.Initialize();
+            SetModules();
         }
 
-        public dynamic keras = null;
-
-        public dynamic tensorflow = null;
-
-        public dynamic keras2onnx = null;
-
-        public dynamic tfjs = null;
-
-        private bool IsInitialized => keras != null;
-
-        internal Keras() { }
+        /***************************************************/
 
         public void Dispose()
         {
@@ -75,7 +45,11 @@ namespace Keras
             PythonEngine.Shutdown();
         }
 
-        internal static PyObject ToPython(object obj)
+        /***************************************************/
+        /**** Public Methods                            ****/
+        /***************************************************/
+
+        public static PyObject ToPython(object obj)
         {
             if (obj == null) return Runtime.GetPyNone();
             switch (obj)
@@ -109,7 +83,9 @@ namespace Keras
             }
         }
 
-        protected static PyTuple ToTuple(Array input)
+        /***************************************************/
+
+        public static PyTuple ToTuple(Array input)
         {
             var array = new PyObject[input.Length];
             for (int i = 0; i < input.Length; i++)
@@ -120,7 +96,9 @@ namespace Keras
             return new PyTuple(array);
         }
 
-        protected static PyTuple ToTuple(ValueTuple<int> input)
+        /***************************************************/
+
+        public static PyTuple ToTuple(ValueTuple<int> input)
         {
             var array = new PyObject[1];
             array[0] = ToPython(input.Item1);
@@ -128,7 +106,9 @@ namespace Keras
             return new PyTuple(array);
         }
 
-        protected static PyTuple ToTuple(ValueTuple<int, int> input)
+        /***************************************************/
+
+        public static PyTuple ToTuple(ValueTuple<int, int> input)
         {
             var array = new PyObject[2];
             array[0] = ToPython(input.Item1);
@@ -137,7 +117,9 @@ namespace Keras
             return new PyTuple(array);
         }
 
-        protected static PyTuple ToTuple(ValueTuple<int, int, int> input)
+        /***************************************************/
+
+        public static PyTuple ToTuple(ValueTuple<int, int, int> input)
         {
             var array = new PyObject[3];
             array[0] = ToPython(input.Item1);
@@ -147,7 +129,9 @@ namespace Keras
             return new PyTuple(array);
         }
 
-        protected static PyList ToList(Array input)
+        /***************************************************/
+
+        public static PyList ToList(Array input)
         {
             var array = new PyObject[input.Length];
             for (int i = 0; i < input.Length; i++)
@@ -158,5 +142,50 @@ namespace Keras
             return new PyList(array);
         }
 
+
+        /***************************************************/
+        /**** Private Fields                            ****/
+        /***************************************************/
+
+        private static Lazy<Keras> _instance = null;
+
+        /***************************************************/
+        /**** Private Methods                           ****/
+        /***************************************************/
+
+        private void SetModules()
+        {
+            if (TryInstall("keras"))
+                this.keras = Py.Import("keras");
+
+            if (TryInstall("tensorflow"))
+                this.tensorflow = Py.Import("tensorflow");
+
+            if (TryInstall("onnxmltools"))
+                this.tensorflow = Py.Import("onnxmltools");
+
+            if (TryInstall("tensorflowjs"))
+                this.tensorflow = Py.Import("tensorflowjs");
+        }
+
+        /***************************************************/
+
+        private bool TryInstall(string module)
+        {
+            try
+            {
+                if (!Python.Included.Installer.IsModuleInstalled(module))
+                    Python.Included.Installer.PipInstallModule(module);
+                Py.Import(module);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /***************************************************/
     }
 }

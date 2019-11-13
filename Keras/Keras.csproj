@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net462</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Keras.NET</PackageId>
     <Version>3.6.1.11</Version>
     <Authors>SciSharp Team</Authors>
@@ -51,7 +51,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Numpy.NET\src\Numpy.Bare\Numpy.Bare.csproj" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Numpy.Bare">
+      <HintPath>..\..\..\Numpy_Toolkit\Build\Numpy.Bare.dll</HintPath>
+    </Reference>
+    <Reference Include="Python.Included">
+      <HintPath>..\..\..\..\..\repos\epignatelli\Python.Included\Python.Included\bin\Debug\netstandard2.0\Python.Included.dll</HintPath>
+    </Reference>
+    <Reference Include="Python.Runtime">
+      <HintPath>..\..\..\..\..\repos\epignatelli\pythonnet_netstandard\src\runtime\bin\Debug\netstandard2.0\Python.Runtime.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
