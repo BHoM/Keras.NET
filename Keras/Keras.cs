@@ -19,9 +19,9 @@ namespace Keras
 
         //public static PyObject Instance { get { return _instance.Value; } }
 
-        public static dynamic keras { get { return m_keras.Value; } private set { keras = value; } }
+        public static dynamic keras { get { return _instance.Value; } private set { keras = value; } }
 
-        public static dynamic tensorflow { get { return m_tensorflow.Value; } private set { tensorflow = value; } }
+        //public static dynamic tensorflow { get; set; } = null;
 
         //public static dynamic keras2onnx { get; set; } = null;
 
@@ -32,21 +32,25 @@ namespace Keras
         /**** Private Fields                            ****/
         /***************************************************/
 
-        private static Lazy<PyObject> m_keras = new Lazy<PyObject>(() =>
+        private static Lazy<PyObject> _instance = new Lazy<PyObject>(() =>
         {
+            Installer.SetupPython().Wait();
+            PythonEngine.Initialize();
             return GetModule("tensorflow.keras");
-        });
-
-        /***************************************************/
-
-        private static Lazy<PyObject> m_tensorflow = new Lazy<PyObject>(() =>
-        {
-            return GetModule("tensorflow");
         });
 
 
         /***************************************************/
         /**** Public Methods                            ****/
+        /***************************************************/
+
+        //public static PyObject Initialize(bool force = false)
+        //{
+        //    Installer.SetupPython(force).Wait();
+        //    PythonEngine.Initialize();
+        //    return GetModule("keras");
+        //}
+
         /***************************************************/
 
         public static PyObject ToPython(object obj)
@@ -148,10 +152,25 @@ namespace Keras
 
         private static PyObject GetModule(string name)
         {
-            Installer.SetupPython().Wait();
             TryInstall(name);
-            PythonEngine.Initialize();
             return Py.Import(name);
+        }
+
+        /***************************************************/
+
+        private static void SetModules()
+        {
+            if (TryInstall("keras"))
+                keras = Py.Import("keras");
+
+            //if (TryInstall("tensorflow"))
+            //    tensorflow = Py.Import("tensorflow");
+
+            //if (TryInstall("onnxmltools"))
+            //    tensorflow = Py.Import("onnxmltools");
+
+            //if (TryInstall("tensorflowjs"))
+            //    tensorflow = Py.Import("tensorflowjs");
         }
 
         /***************************************************/

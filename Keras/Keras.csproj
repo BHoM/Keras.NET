@@ -5,7 +5,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <Version>3.6.1.15-alpha</Version>
+    <Version>3.6.1.16-alpha</Version>
     <Authors>Eduardo Pignatelli</Authors>
     <Product>Keras.NET</Product>
     <Description>C# bindings for Keras on Win64 - Keras.NET is a high-level neural networks API, capable of running on top of TensorFlow, CNTK, or Theano. </Description>
