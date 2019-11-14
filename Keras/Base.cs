@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Keras
 {
-    public abstract class Base : Keras
+    public abstract class Base
     {
         internal dynamic PyInstance;
         public Dictionary<string, object> Parameters = new Dictionary<string, object>();
@@ -20,7 +20,7 @@ namespace Keras
 
         public virtual PyObject Instantiate()
         {
-            var pyargs = ToTuple(new object[]
+            var pyargs = Keras.ToTuple(new object[]
             {
                 Parameters.FirstOrDefault().Value
             });
@@ -38,7 +38,7 @@ namespace Keras
 
                 if (item.Value != null && !string.IsNullOrWhiteSpace(item.Value.ToString()))
                 {
-                    kwargs[item.Key] = ToPython(item.Value);
+                    kwargs[item.Key] = Keras.ToPython(item.Value);
                 }
             }
 
@@ -65,7 +65,7 @@ namespace Keras
 
         public static PyObject InvokeStaticMethod(dynamic caller, string method, Dictionary<string, object> args)
         {
-            var pyargs = ToTuple(new object[]
+            var pyargs = Keras.ToTuple(new object[]
             {
                 args.FirstOrDefault().Value
             });
@@ -83,7 +83,7 @@ namespace Keras
 
                 if (item.Value != null && !string.IsNullOrWhiteSpace(item.Value.ToString()))
                 {
-                    kwargs[item.Key] = ToPython(item.Value);
+                    kwargs[item.Key] = Keras.ToPython(item.Value);
                 }
             }
 
@@ -95,7 +95,7 @@ namespace Keras
 
         public PyObject InvokeMethod(string method, Dictionary<string, object> args)
         {
-           var pyargs = ToTuple(new object[]
+           var pyargs = Keras.ToTuple(new object[]
            {
                 args.FirstOrDefault().Value
            });
@@ -113,7 +113,7 @@ namespace Keras
 
                 if (item.Value != null && !string.IsNullOrWhiteSpace(item.Value.ToString()))
                 {
-                    kwargs[item.Key] = ToPython(item.Value);
+                    kwargs[item.Key] = Keras.ToPython(item.Value);
                 }
             }
 

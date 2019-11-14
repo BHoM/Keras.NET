@@ -12,7 +12,7 @@ namespace Keras
     /// <seealso cref="Keras.Base" />
     public partial class Activations : Base
     {
-        static dynamic caller = Instance.keras.activations;
+        static dynamic caller = Keras.keras.activations;
 
         /// <summary>
         /// Softmax activation function
