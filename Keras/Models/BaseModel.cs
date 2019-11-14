@@ -353,7 +353,7 @@ namespace Keras.Models
                 }
             }
 
-            model.PyInstance = Keras.tensorflow.keras.models.load_model(filepath: filepath, custom_objects: dict, compile: compile);
+            model.PyInstance = Keras.keras.models.load_model(filepath: filepath, custom_objects: dict, compile: compile);
 
             return model;
         }
@@ -390,8 +390,8 @@ namespace Keras.Models
         /// <param name="filePath">The file path.</param>
         public void SaveOnnx(string filePath)
         {
-            var onnx_model = Keras.keras2onnx.convert_keras(model: (PyObject)this.PyInstance);
-            File.WriteAllText(filePath, onnx_model.ToString());
+            //var onnx_model = Keras.keras2onnx.convert_keras(model: (PyObject)this.PyInstance);
+            //File.WriteAllText(filePath, onnx_model.ToString());
         }
 
         /// <summary>
@@ -411,7 +411,7 @@ namespace Keras.Models
         /// <param name="quantize">if set to <c>true</c> [quantize].</param>
         public void SaveTensorflowJSFormat(string artifacts_dir, bool quantize = false)
         {
-            Keras.tfjs.converters.save_keras_model(model: this.PyInstance, artifacts_dir: artifacts_dir);
+            //Keras.tfjs.converters.save_keras_model(model: this.PyInstance, artifacts_dir: artifacts_dir);
         }
     }
 }

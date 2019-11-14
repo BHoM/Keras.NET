@@ -2,11 +2,12 @@
 using Keras.Utils;
 using Numpy;
 using Numpy.Models;
+using Python.Included;
 using Python.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static Python.Runtime.Py;
+//using static Python.Runtime.Py;
 
 namespace Keras
 {
@@ -16,45 +17,32 @@ namespace Keras
         /**** Public Properties                         ****/
         /***************************************************/
 
-        public static PyObject Instance { get { return _instance.Value; } }
+        //public static PyObject Instance { get { return _instance.Value; } }
 
-        public static dynamic keras { get; set; } = null;
+        public static dynamic keras { get { return m_keras.Value; } private set { keras = value; } }
 
-        public static dynamic tensorflow { get; set; } = null;
+        public static dynamic tensorflow { get { return m_tensorflow.Value; } private set { tensorflow = value; } }
 
-        public static dynamic keras2onnx { get; set; } = null;
+        //public static dynamic keras2onnx { get; set; } = null;
 
-        public static dynamic tfjs { get; set; } = null;
+        //public static dynamic tfjs { get; set; } = null;
 
 
         /***************************************************/
         /**** Private Fields                            ****/
         /***************************************************/
 
-        private static Lazy<PyObject> _instance = new Lazy<PyObject>(() =>
+        private static Lazy<PyObject> m_keras = new Lazy<PyObject>(() =>
         {
-            return Initialize();
+            return GetModule("tensorflow.keras");
         });
 
-
-        /***************************************************/
-        /**** De/Constructors                           ****/
         /***************************************************/
 
-        public static PyObject Initialize(bool force = true)
+        private static Lazy<PyObject> m_tensorflow = new Lazy<PyObject>(() =>
         {
-            PythonEngine.Initialize();
-            SetModules();
-            return keras;
-        }
-
-        /***************************************************/
-
-        public static void Dispose()
-        {
-            keras?.Dispose();
-            PythonEngine.Shutdown();
-        }
+            return GetModule("tensorflow");
+        });
 
 
         /***************************************************/
@@ -158,19 +146,12 @@ namespace Keras
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static void SetModules()
+        private static PyObject GetModule(string name)
         {
-            if (TryInstall("keras"))
-                keras = Py.Import("keras");
-
-            if (TryInstall("tensorflow"))
-                tensorflow = Py.Import("tensorflow");
-
-            if (TryInstall("onnxmltools"))
-                tensorflow = Py.Import("onnxmltools");
-
-            if (TryInstall("tensorflowjs"))
-                tensorflow = Py.Import("tensorflowjs");
+            Installer.SetupPython().Wait();
+            TryInstall(name);
+            PythonEngine.Initialize();
+            return Py.Import(name);
         }
 
         /***************************************************/
