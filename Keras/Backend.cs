@@ -16,7 +16,7 @@ namespace Keras
     /// <seealso cref="Keras.Base" />
     public class Backend : Base
     {
-        static dynamic caller = Instance.keras.backend;
+        static dynamic caller = Keras.keras.backend;
 
         /// <summary>
         /// Publicly accessible method for determining the current backend.

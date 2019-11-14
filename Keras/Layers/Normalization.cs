@@ -34,7 +34,7 @@ namespace Keras.Layers
         {
             if (input_shape != null)
             {
-                PyInstance = Instance.keras.layers.BatchNormalization(axis: axis, momentum: momentum, epsilon: epsilon, center: center,
+                PyInstance = Keras.keras.layers.BatchNormalization(axis: axis, momentum: momentum, epsilon: epsilon, center: center,
                                                         scale: scale, beta_initializer: beta_initializer, gamma_initializer: gamma_initializer,
                                                         moving_mean_initializer: moving_mean_initializer, moving_variance_initializer: moving_variance_initializer,
                                                         beta_regularizer: beta_regularizer, gamma_regularizer: gamma_regularizer, beta_constraint: beta_constraint,
@@ -42,7 +42,7 @@ namespace Keras.Layers
             }
             else
             {
-                PyInstance = Instance.keras.layers.BatchNormalization(axis: axis, momentum: momentum, epsilon: epsilon, center: center,
+                PyInstance = Keras.keras.layers.BatchNormalization(axis: axis, momentum: momentum, epsilon: epsilon, center: center,
                                                        scale: scale, beta_initializer: beta_initializer, gamma_initializer: gamma_initializer,
                                                        moving_mean_initializer: moving_mean_initializer, moving_variance_initializer: moving_variance_initializer,
                                                        beta_regularizer: beta_regularizer, gamma_regularizer: gamma_regularizer, beta_constraint: beta_constraint,

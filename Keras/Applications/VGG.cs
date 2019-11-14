@@ -18,7 +18,7 @@ namespace Keras.Applications.VGG
         /// <summary>
         /// Initializes a new instance of the <see cref="VGG16"/> class.
         /// </summary>
-        public VGG16() : base((PyObject)Instance.keras.applications.vgg16)
+        public VGG16() : base((PyObject)Keras.keras.applications.vgg16)
         {
 
         }
@@ -62,7 +62,7 @@ namespace Keras.Applications.VGG
         /// <summary>
         /// Initializes a new instance of the <see cref="VGG19"/> class.
         /// </summary>
-        public VGG19() : base((PyObject)Instance.keras.applications.vgg16)
+        public VGG19() : base((PyObject)Keras.keras.applications.vgg16)
         {
 
         }

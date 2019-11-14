@@ -19,7 +19,7 @@ namespace Keras.Applications.MobileNet
         /// Initializes a new instance of the <see cref="MobileNetV1"/> class.
         /// </summary>
         public MobileNetV1()
-            : base((PyObject)Instance.keras.applications.mobilenet)
+            : base((PyObject)Keras.keras.applications.mobilenet)
         {
 
         }
@@ -69,7 +69,7 @@ namespace Keras.Applications.MobileNet
         /// Initializes a new instance of the <see cref="MobileNetV2"/> class.
         /// </summary>
         public MobileNetV2()
-            : base((PyObject)Instance.keras.applications.mobilenet_v2)
+            : base((PyObject)Keras.keras.applications.mobilenet_v2)
         {
 
         }

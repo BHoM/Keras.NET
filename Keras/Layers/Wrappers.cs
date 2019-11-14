@@ -23,7 +23,7 @@ namespace Keras.Layers
         {
             Parameters["layer"] = layer.PyInstance;
 
-            PyInstance = Instance.keras.layers.TimeDistributed;
+            PyInstance = Keras.keras.layers.TimeDistributed;
             Init();
         }
     }
@@ -44,7 +44,7 @@ namespace Keras.Layers
         {
             Parameters["layer"] = layer.PyInstance;
 
-            PyInstance = Instance.keras.layers.Bidirectional;
+            PyInstance = Keras.keras.layers.Bidirectional;
             Init();
         }
     }

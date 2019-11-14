@@ -17,7 +17,7 @@ namespace Keras.Applications.NASNet
         /// <summary>
         /// Initializes a new instance of the <see cref="NASNetLarge"/> class.
         /// </summary>
-        private NASNetLarge() : base((PyObject)Instance.keras.applications.nasnet)
+        private NASNetLarge() : base((PyObject)Keras.keras.applications.nasnet)
         {
 
         }
@@ -60,7 +60,7 @@ namespace Keras.Applications.NASNet
         /// <summary>
         /// Initializes a new instance of the <see cref="NASNetMobile"/> class.
         /// </summary>
-        private NASNetMobile() : base((PyObject)Instance.keras.applications.nasnet)
+        private NASNetMobile() : base((PyObject)Keras.keras.applications.nasnet)
         {
 
         }

@@ -22,7 +22,7 @@
         public static BaseModel MultiGPUModel(BaseModel model, int[] gpus, bool cpu_merge = true, bool cpu_relocation = false)
         {
             BaseModel result = new BaseModel();
-            result.PyInstance = (PyObject)Instance.keras.utils.multi_gpu_model(model: model.PyInstance, gpus: gpus.ToList(), cpu_merge: cpu_merge, cpu_relocation: cpu_relocation);
+            result.PyInstance = (PyObject)Keras.keras.utils.multi_gpu_model(model: model.PyInstance, gpus: gpus.ToList(), cpu_merge: cpu_merge, cpu_relocation: cpu_relocation);
             return result;
         }
 
@@ -41,7 +41,7 @@
         public static BaseModel MultiGPUModel(BaseModel model, int gpus, bool cpu_merge = true, bool cpu_relocation = false)
         {
             BaseModel result = new BaseModel();
-            result.PyInstance = (PyObject)Instance.keras.utils.multi_gpu_model(model: model.PyInstance, gpus: gpus, cpu_merge: cpu_merge, cpu_relocation: cpu_relocation);
+            result.PyInstance = (PyObject)Keras.keras.utils.multi_gpu_model(model: model.PyInstance, gpus: gpus, cpu_merge: cpu_merge, cpu_relocation: cpu_relocation);
             return result;
         }
 
@@ -54,7 +54,7 @@
         /// <returns>A binary matrix representation of the input. The classes axis is placed last.</returns>
         public static NDarray ToCategorical(NDarray y, int? num_classes = null, string dtype = "float32")
         {
-            return new NDarray((PyObject)Instance.keras.utils.to_categorical(y: y.PyObject, num_classes: num_classes, dtype: dtype));
+            return new NDarray((PyObject)Keras.keras.utils.to_categorical(y: y.PyObject, num_classes: num_classes, dtype: dtype));
         }
 
         /// <summary>
@@ -66,7 +66,7 @@
         /// <returns></returns>
         public static NDarray Normalize(NDarray y, int axis = -1, int order = 2)
         {
-            return new NDarray((PyObject)Instance.keras.utils.normalize(y: y.PyObject, axis: axis, order: order));
+            return new NDarray((PyObject)Keras.keras.utils.normalize(y: y.PyObject, axis: axis, order: order));
         }
 
         /// <summary>
@@ -83,7 +83,7 @@
         public static void PlotModel(BaseModel model, string to_file = "model.png", bool show_shapes = false, bool show_layer_names = true,
             string rankdir = "TB", bool expand_nested = false, int dpi = 96)
         {
-            Instance.keras.utils.plot_model(model: model.PyInstance, to_file: to_file, show_shapes: show_shapes, show_layer_names: show_layer_names,
+            Keras.keras.utils.plot_model(model: model.PyInstance, to_file: to_file, show_shapes: show_shapes, show_layer_names: show_layer_names,
                 rankdir: rankdir, expand_nested: expand_nested, dpi: dpi);
         }
         

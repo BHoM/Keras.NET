@@ -135,7 +135,7 @@ namespace Keras.Models
         /// <param name="batch_size">Integer. If unspecified, it will default to 32.</param>
         /// <param name="verbose">Verbosity mode, 0 or 1.</param>
         /// <param name="steps">Total number of steps (batches of samples) before declaring the prediction round finished. Ignored with the default value of None.</param>
-        /// <param name="callbacks">List of keras.callbacks.Callback instances. List of callbacks to apply during prediction. See callbacks.</param>
+        /// <param name="callbacks">List of Keras.keras.callbacks.Callback instances. List of callbacks to apply during prediction. See callbacks.</param>
         /// <returns>Numpy array(s) of predictions.</returns>
         public NDarray Predict(NDarray x, int? batch_size = null, int verbose = 1, int? steps = null, Callback[] callbacks = null)
         {
@@ -353,7 +353,7 @@ namespace Keras.Models
                 }
             }
 
-            model.PyInstance = Instance.tensorflow.keras.models.load_model(filepath: filepath, custom_objects: dict, compile: compile);
+            model.PyInstance = Keras.tensorflow.keras.models.load_model(filepath: filepath, custom_objects: dict, compile: compile);
 
             return model;
         }
@@ -366,7 +366,7 @@ namespace Keras.Models
         public static BaseModel ModelFromJson(string json_string)
         {
             var model = new BaseModel();
-            model.PyInstance = Instance.keras.models.model_from_json(json_string: json_string);
+            model.PyInstance = Keras.keras.models.model_from_json(json_string: json_string);
 
             return model;
         }
@@ -379,7 +379,7 @@ namespace Keras.Models
         public static BaseModel ModelFromYaml(string json_string)
         {
             var model = new BaseModel();
-            model.PyInstance = Instance.keras.models.model_from_yaml(json_string: json_string);
+            model.PyInstance = Keras.keras.models.model_from_yaml(json_string: json_string);
 
             return model;
         }
@@ -390,7 +390,7 @@ namespace Keras.Models
         /// <param name="filePath">The file path.</param>
         public void SaveOnnx(string filePath)
         {
-            var onnx_model = Instance.keras2onnx.convert_keras(model: (PyObject)this.PyInstance);
+            var onnx_model = Keras.keras2onnx.convert_keras(model: (PyObject)this.PyInstance);
             File.WriteAllText(filePath, onnx_model.ToString());
         }
 
@@ -411,7 +411,7 @@ namespace Keras.Models
         /// <param name="quantize">if set to <c>true</c> [quantize].</param>
         public void SaveTensorflowJSFormat(string artifacts_dir, bool quantize = false)
         {
-            Instance.tfjs.converters.save_keras_model(model: this.PyInstance, artifacts_dir: artifacts_dir);
+            Keras.tfjs.converters.save_keras_model(model: this.PyInstance, artifacts_dir: artifacts_dir);
         }
     }
 }

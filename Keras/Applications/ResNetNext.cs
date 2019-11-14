@@ -16,7 +16,7 @@ namespace Keras.Applications.ResNext
         /// <summary>
         /// Initializes a new instance of the <see cref="ResNeXt50"/> class.
         /// </summary>
-        private ResNeXt50() : base((PyObject)Instance.keras.applications.resnext)
+        private ResNeXt50() : base((PyObject)Keras.keras.applications.resnext)
         {
 
         }
@@ -58,7 +58,7 @@ namespace Keras.Applications.ResNext
         /// <summary>
         /// Initializes a new instance of the <see cref="ResNeXt101"/> class.
         /// </summary>
-        private ResNeXt101() : base((PyObject)Instance.keras.applications.resnext)
+        private ResNeXt101() : base((PyObject)Keras.keras.applications.resnext)
         {
 
         }

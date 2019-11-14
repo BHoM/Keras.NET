@@ -19,7 +19,7 @@ namespace Keras.Applications.Inception
         /// Initializes a new instance of the <see cref="InceptionResNetV2"/> class.
         /// </summary>
         public InceptionResNetV2()
-            : base((PyObject)Instance.keras.applications.inception_resnet_v2)
+            : base((PyObject)Keras.keras.applications.inception_resnet_v2)
         {
 
         }
@@ -62,7 +62,7 @@ namespace Keras.Applications.Inception
         /// Initializes a new instance of the <see cref="InceptionV3" /> class.
         /// </summary>
         public InceptionV3()
-            : base((PyObject)Instance.keras.applications.inception_v3)
+            : base((PyObject)Keras.keras.applications.inception_v3)
         {
 
         }

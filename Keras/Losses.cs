@@ -11,7 +11,7 @@ namespace Keras
     /// <seealso cref="Keras.Base" />
     public class Losses : Base
     {
-        static dynamic caller = Instance.keras.losses;
+        static dynamic caller = Keras.keras.losses;
 
         /// <summary>
         /// Calculates the mean squared error.

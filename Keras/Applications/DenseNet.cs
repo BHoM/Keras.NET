@@ -18,7 +18,7 @@ namespace Keras.Applications.DenseNet
         /// <summary>
         /// Initializes a new instance of the <see cref="DenseNet121"/> class.
         /// </summary>
-        private DenseNet121() : base((PyObject)Instance.keras.applications.densenet)
+        private DenseNet121() : base((PyObject)Keras.keras.applications.densenet)
         {
 
         }
@@ -63,7 +63,7 @@ namespace Keras.Applications.DenseNet
         /// <summary>
         /// Initializes a new instance of the <see cref="DenseNet169"/> class.
         /// </summary>
-        private DenseNet169() : base((PyObject)Instance.keras.applications.densenet)
+        private DenseNet169() : base((PyObject)Keras.keras.applications.densenet)
         {
 
         }
@@ -108,7 +108,7 @@ namespace Keras.Applications.DenseNet
         /// <summary>
         /// Initializes a new instance of the <see cref="DenseNet201"/> class.
         /// </summary>
-        private DenseNet201() : base((PyObject)Instance.keras.applications.densenet)
+        private DenseNet201() : base((PyObject)Keras.keras.applications.densenet)
         {
 
         }

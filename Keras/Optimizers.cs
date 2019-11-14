@@ -24,7 +24,7 @@ namespace Keras.Optimizers
             Parameters["decay"] = decay;
             Parameters["nesterov"] = nesterov;
 
-            PyInstance = Instance.keras.optimizers.SGD;
+            PyInstance = Keras.keras.optimizers.SGD;
             Init();
         }
     }
@@ -50,7 +50,7 @@ namespace Keras.Optimizers
             Parameters["epsilon"] = epsilon;
             Parameters["decay"] = decay;
 
-            PyInstance = Instance.keras.optimizers.RMSprop;
+            PyInstance = Keras.keras.optimizers.RMSprop;
             Init();
         }
     }
@@ -73,7 +73,7 @@ namespace Keras.Optimizers
             Parameters["epsilon"] = epsilon;
             Parameters["decay"] = lr;
 
-            PyInstance = Instance.keras.optimizers.Adagrad;
+            PyInstance = Keras.keras.optimizers.Adagrad;
             Init();
         }
     }
@@ -98,7 +98,7 @@ namespace Keras.Optimizers
             Parameters["epsilon"] = epsilon;
             Parameters["decay"] = decay;
 
-            PyInstance = Instance.keras.optimizers.Adadelta;
+            PyInstance = Keras.keras.optimizers.Adadelta;
             Init();
         }
     }
@@ -127,7 +127,7 @@ namespace Keras.Optimizers
             Parameters["decay"] = decay;
             Parameters["amsgrad"] = amsgrad;
 
-            PyInstance = Instance.keras.optimizers.Adam;
+            PyInstance = Keras.keras.optimizers.Adam;
             Init();
         }
     }
@@ -154,7 +154,7 @@ namespace Keras.Optimizers
             Parameters["epsilon"] = epsilon;
             Parameters["decay"] = decay;
 
-            PyInstance = Instance.keras.optimizers.Adamax;
+            PyInstance = Keras.keras.optimizers.Adamax;
             Init();
         }
     }
@@ -182,7 +182,7 @@ namespace Keras.Optimizers
             Parameters["epsilon"] = epsilon;
             Parameters["schedule_decay"] = schedule_decay;
 
-            PyInstance = Instance.keras.optimizers.Adamax;
+            PyInstance = Keras.keras.optimizers.Adamax;
             Init();
         }
     }

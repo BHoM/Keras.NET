@@ -19,7 +19,7 @@ namespace Keras.Layers
         {
             Parameters["alpha"] = alpha;
 
-            PyInstance = Instance.keras.layers.LeakyReLU;
+            PyInstance = Keras.keras.layers.LeakyReLU;
             Init();
         }
     }
@@ -45,7 +45,7 @@ namespace Keras.Layers
             Parameters["alpha_constraint"] = alpha_constraint;
             Parameters["shared_axes"] = shared_axes;
 
-            PyInstance = Instance.keras.layers.PReLU;
+            PyInstance = Keras.keras.layers.PReLU;
             Init();
         }
     }
@@ -65,7 +65,7 @@ namespace Keras.Layers
         {
             Parameters["alpha"] = alpha;
 
-            PyInstance = Instance.keras.layers.LeakyReLU;
+            PyInstance = Keras.keras.layers.LeakyReLU;
             Init();
         }
     }
@@ -85,7 +85,7 @@ namespace Keras.Layers
         {
             Parameters["theta"] = theta;
 
-            PyInstance = Instance.keras.layers.ThresholdedReLU;
+            PyInstance = Keras.keras.layers.ThresholdedReLU;
             Init();
         }
     }
@@ -104,7 +104,7 @@ namespace Keras.Layers
         {
             Parameters["axis"] = axis;
 
-            PyInstance = Instance.keras.layers.Softmax;
+            PyInstance = Keras.keras.layers.Softmax;
             Init();
         }
     }
@@ -129,7 +129,7 @@ namespace Keras.Layers
             Parameters["negative_slope"] = negative_slope;
             Parameters["threshold"] = threshold;
 
-            PyInstance = Instance.keras.layers.ReLU;
+            PyInstance = Keras.keras.layers.ReLU;
             Init();
         }
     }

@@ -68,7 +68,7 @@ namespace Keras.PreProcessing.Image
             Parameters["validation_split"] = validation_split;
             Parameters["dtype"] = dtype;
 
-            PyInstance = Instance.keras.preprocessing.image.ImageDataGenerator;
+            PyInstance = Keras.keras.preprocessing.image.ImageDataGenerator;
             Init();
         }
 
@@ -222,7 +222,7 @@ namespace Keras.PreProcessing.Image
 
     public class ImageUtil : Base
     {
-        static dynamic caller = Instance.keras.preprocessing.image;
+        static dynamic caller = Keras.keras.preprocessing.image;
         /// <summary>
         /// Array to img.
         /// </summary>
@@ -289,7 +289,7 @@ namespace Keras.PreProcessing.Image
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters["preds"] = preds;
             parameters["top"] = top;
-            var predobj = (PyObject)InvokeStaticMethod(Instance.keras.applications.resnet50, "decode_predictions", parameters);
+            var predobj = (PyObject)InvokeStaticMethod(Keras.keras.applications.resnet50, "decode_predictions", parameters);
             var d = predobj.ToString();
             var list = TupleSolver.TupleToList<object>(predobj);
             return null;
@@ -306,7 +306,7 @@ namespace Keras.PreProcessing.Image
             parameters["x"] = x;
             parameters["data_format"] = data_format;
             parameters["mode"] = mode;
-            return new NDarray((PyObject)InvokeStaticMethod(Instance.keras.applications.resnet50, "preprocess_input", parameters));
+            return new NDarray((PyObject)InvokeStaticMethod(Keras.keras.applications.resnet50, "preprocess_input", parameters));
         }
     }
 }

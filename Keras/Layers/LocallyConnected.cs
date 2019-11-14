@@ -49,7 +49,7 @@
             Parameters["bias_constraint"] = bias_constraint;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.LocallyConnected1D;
+            PyInstance = Keras.keras.layers.LocallyConnected1D;
             Init();
         }
     }
@@ -101,7 +101,7 @@
             Parameters["bias_constraint"] = bias_constraint;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.LocallyConnected2D;
+            PyInstance = Keras.keras.layers.LocallyConnected2D;
             Init();
         }
     }

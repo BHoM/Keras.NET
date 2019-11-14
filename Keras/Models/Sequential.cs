@@ -25,7 +25,7 @@ namespace Keras.Models
         /// </summary>
         public Sequential()
         {
-            PyInstance = Instance.keras.models.Sequential();
+            PyInstance = Keras.keras.models.Sequential();
             //Init();
         }
 
