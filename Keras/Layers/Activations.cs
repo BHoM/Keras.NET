@@ -133,4 +133,22 @@ namespace Keras.Layers
             Init();
         }
     }
+
+    public class Sigmoid : BaseLayer
+    {
+        public Sigmoid()
+        {
+            PyInstance = Keras.keras.activations.sigmoid;
+            Init();
+        }
+    }
+
+    public class Tanh : BaseLayer
+    {
+        public Tanh()
+        {
+            PyInstance = Keras.keras.activations.tanh;
+            Init();
+        }
+    }
 }
