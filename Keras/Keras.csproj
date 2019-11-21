@@ -45,10 +45,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BH.External.Numpy" Version="3.7.1.15-alpha" />
-    <PackageReference Include="BH.UI.Python.Included" Version="3.7.3.6-alpha" />
+    <PackageReference Include="BH.UI.Python.Included" Version="3.7.3.7-alpha" />
     <PackageReference Include="BH.UI.Python.Runtime" Version="3.7.2-alpha" />
     <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Numpy">
+      <HintPath>..\..\Numpy.NET\Build\Numpy.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
