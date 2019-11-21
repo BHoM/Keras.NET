@@ -1,13 +1,9 @@
-﻿using Keras.Layers;
-using Keras.Utils;
+﻿using Keras.Utils;
 using Numpy;
 using Numpy.Models;
 using Python.Included;
 using Python.Runtime;
 using System;
-using System.Collections.Generic;
-using System.Text;
-//using static Python.Runtime.Py;
 
 namespace Keras
 {
@@ -36,7 +32,8 @@ namespace Keras
         {
             Installer.SetupPython().Wait();
             PythonEngine.Initialize();
-            return GetModule("tensorflow.keras");
+            TryInstall("tensorflow");
+            return Py.Import("tensorflow.keras");
         });
 
 
@@ -139,31 +136,6 @@ namespace Keras
 
         /***************************************************/
         /**** Private Methods                           ****/
-        /***************************************************/
-
-        private static PyObject GetModule(string name)
-        {
-            TryInstall(name);
-            return Py.Import(name);
-        }
-
-        /***************************************************/
-
-        private static void SetModules()
-        {
-            if (TryInstall("tensorflow"))
-                tensorflow = Py.Import("tensorflow");
-
-            if (TryInstall("keras"))
-                keras = Py.Import("keras");
-
-            //if (TryInstall("onnxmltools"))
-            //    tensorflow = Py.Import("onnxmltools");
-
-            //if (TryInstall("tensorflowjs"))
-            //    tensorflow = Py.Import("tensorflowjs");
-        }
-
         /***************************************************/
 
         private static bool TryInstall(string module)
