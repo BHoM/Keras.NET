@@ -21,7 +21,7 @@ namespace Keras
 
         public static dynamic keras { get { return _instance.Value; } private set { keras = value; } }
 
-        //public static dynamic tensorflow { get; set; } = null;
+        public static dynamic tensorflow { get; set; } = null;
 
         //public static dynamic keras2onnx { get; set; } = null;
 
@@ -42,15 +42,6 @@ namespace Keras
 
         /***************************************************/
         /**** Public Methods                            ****/
-        /***************************************************/
-
-        //public static PyObject Initialize(bool force = false)
-        //{
-        //    Installer.SetupPython(force).Wait();
-        //    PythonEngine.Initialize();
-        //    return GetModule("keras");
-        //}
-
         /***************************************************/
 
         public static PyObject ToPython(object obj)
@@ -160,11 +151,11 @@ namespace Keras
 
         private static void SetModules()
         {
+            if (TryInstall("tensorflow"))
+                tensorflow = Py.Import("tensorflow");
+
             if (TryInstall("keras"))
                 keras = Py.Import("keras");
-
-            //if (TryInstall("tensorflow"))
-            //    tensorflow = Py.Import("tensorflow");
 
             //if (TryInstall("onnxmltools"))
             //    tensorflow = Py.Import("onnxmltools");
