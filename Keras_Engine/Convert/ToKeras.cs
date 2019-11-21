@@ -112,12 +112,26 @@ namespace BH.Engine.Keras
         /**** Public Methods - Losses                   ****/
         /***************************************************/
 
-        public static k.Losses ToKeras(this L1 l1loss)
+        public static k.Layers.BinaryCrossentropy ToKeras(this BinaryCrossEntropy bce)
         {
-            return new k.Losses();
+            return new k.Layers.BinaryCrossentropy();
         }
 
+        /***************************************************/
 
+        public static k.Layers.MeanSquaredError ToKeras(this MeanSquareError mse)
+        {
+            return new k.Layers.MeanSquaredError();
+        }
+
+        /***************************************************/
+
+        public static k.Layers.CategoricalCrossentropy ToKeras(this CrossEntropy crossEntropy)
+        {
+            return new k.Layers.CategoricalCrossentropy();
+        }
+
+        
         /***************************************************/
         /**** Public Methods - Layers                   ****/
         /***************************************************/
