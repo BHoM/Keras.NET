@@ -1,13 +1,9 @@
-﻿using Keras.Layers;
-using Keras.Utils;
+﻿using Keras.Utils;
 using Numpy;
 using Numpy.Models;
 using Python.Included;
 using Python.Runtime;
 using System;
-using System.Collections.Generic;
-using System.Text;
-//using static Python.Runtime.Py;
 
 namespace Keras
 {
@@ -21,7 +17,7 @@ namespace Keras
 
         public static dynamic keras { get { return _instance.Value; } private set { keras = value; } }
 
-        //public static dynamic tensorflow { get; set; } = null;
+        public static dynamic tensorflow { get; set; } = null;
 
         //public static dynamic keras2onnx { get; set; } = null;
 
@@ -36,21 +32,13 @@ namespace Keras
         {
             Installer.SetupPython().Wait();
             PythonEngine.Initialize();
-            return GetModule("tensorflow.keras");
+            TryInstall("tensorflow");
+            return Py.Import("tensorflow.keras");
         });
 
 
         /***************************************************/
         /**** Public Methods                            ****/
-        /***************************************************/
-
-        //public static PyObject Initialize(bool force = false)
-        //{
-        //    Installer.SetupPython(force).Wait();
-        //    PythonEngine.Initialize();
-        //    return GetModule("keras");
-        //}
-
         /***************************************************/
 
         public static PyObject ToPython(object obj)
@@ -148,31 +136,6 @@ namespace Keras
 
         /***************************************************/
         /**** Private Methods                           ****/
-        /***************************************************/
-
-        private static PyObject GetModule(string name)
-        {
-            TryInstall(name);
-            return Py.Import(name);
-        }
-
-        /***************************************************/
-
-        private static void SetModules()
-        {
-            if (TryInstall("keras"))
-                keras = Py.Import("keras");
-
-            //if (TryInstall("tensorflow"))
-            //    tensorflow = Py.Import("tensorflow");
-
-            //if (TryInstall("onnxmltools"))
-            //    tensorflow = Py.Import("onnxmltools");
-
-            //if (TryInstall("tensorflowjs"))
-            //    tensorflow = Py.Import("tensorflowjs");
-        }
-
         /***************************************************/
 
         private static bool TryInstall(string module)
