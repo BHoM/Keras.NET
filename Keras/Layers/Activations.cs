@@ -134,8 +134,14 @@ namespace Keras.Layers
         }
     }
 
+    /// <summary>
+    /// Sigmoid activation function.
+    /// </summary>
     public class Sigmoid : BaseLayer
     {
+        /// <summary>
+        /// Initialises a new instance of the <see cref="Sigmoid" /> class
+        /// </summary>
         public Sigmoid()
         {
             PyInstance = Keras.keras.activations.sigmoid;
@@ -143,8 +149,14 @@ namespace Keras.Layers
         }
     }
 
+    /// <summary>
+    /// Tanh activation function.
+    /// </summary>
     public class Tanh : BaseLayer
     {
+        /// <summary>
+        /// Initialises a new instance of the <see cref="Tanh" /> class
+        /// </summary>
         public Tanh()
         {
             PyInstance = Keras.keras.activations.tanh;
