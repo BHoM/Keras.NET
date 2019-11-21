@@ -19,7 +19,7 @@ namespace Keras.Utils
         /// </summary>
         public CustomObjectScope()
         {
-            PyInstance = Instance.keras.utils.CustomObjectScope;
+            PyInstance = Keras.keras.utils.CustomObjectScope;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Keras.Utils
         /// <param name="normalizer">function to be called on data when retrieved</param>
         public HDF5Matrix(string datapath, string dataset, int start = 0, int? end = null, EventHandler normalizer = null)
         {
-            PyInstance = Instance.keras.utils.HDF5Matrix;
+            PyInstance = Keras.keras.utils.HDF5Matrix;
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Keras.Utils
         /// </summary>
         public Sequence()
         {
-            PyInstance = Instance.keras.utils.Sequence;
+            PyInstance = Keras.keras.utils.Sequence;
             //Init();
         }
 

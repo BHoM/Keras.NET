@@ -29,7 +29,7 @@
             this["sparse"] = sparse;
             this["tensor"] = tensor;
 
-            PyInstance = Instance.keras.layers.Input;
+            PyInstance = Keras.keras.layers.Input;
             Init();
         }
     }
@@ -72,7 +72,7 @@
             this["kernel_constraint"] = kernel_constraint;
             this["bias_constraint"] = bias_constraint;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.Dense;
+            PyInstance = Keras.keras.layers.Dense;
             Init();
         }
 
@@ -93,7 +93,7 @@
         {
             Parameters["activation"] = act;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.Activation;
+            PyInstance = Keras.keras.layers.Activation;
             Init();
         }
     }
@@ -116,7 +116,7 @@
             Parameters["rate"] = rate;
             Parameters["noise_shape"] = noise_shape;
             Parameters["seed"] = seed;
-            PyInstance = Instance.keras.layers.Dropout;
+            PyInstance = Keras.keras.layers.Dropout;
             Init();
         }
     }
@@ -134,7 +134,7 @@
         public Flatten(string data_format = "channels_last")
         {
             Parameters["data_format"] = data_format;
-            PyInstance = Instance.keras.layers.Flatten;
+            PyInstance = Keras.keras.layers.Flatten;
             Init();
         }
     }
@@ -154,7 +154,7 @@
         {
             Parameters["target_shape"] = target_shape;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.Reshape;
+            PyInstance = Keras.keras.layers.Reshape;
             Init();
         }
     }
@@ -174,7 +174,7 @@
         {
             Parameters["dims"] = dims;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.Permute;
+            PyInstance = Keras.keras.layers.Permute;
             Init();
         }
     }
@@ -194,7 +194,7 @@
         {
             Parameters["n"] = n;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.RepeatVector;
+            PyInstance = Keras.keras.layers.RepeatVector;
             Init();
         }
     }
@@ -221,7 +221,7 @@
             Parameters["arguments"] = arguments;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.Lambda;
+            PyInstance = Keras.keras.layers.Lambda;
             Init();
         }
     }
@@ -243,7 +243,7 @@
             Parameters["l1"] = l1;
             Parameters["l2"] = l2;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.ActivityRegularization;
+            PyInstance = Keras.keras.layers.ActivityRegularization;
             Init();
         }
     }
@@ -263,7 +263,7 @@
         public Masking(float mask_value = 0.0f)
         {
             Parameters["mask_value"] = mask_value;
-            PyInstance = Instance.keras.layers.Masking;
+            PyInstance = Keras.keras.layers.Masking;
             Init();
         }
     }
@@ -284,7 +284,7 @@
         {
             Parameters["rate"] = rate;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.SpatialDropout1D;
+            PyInstance = Keras.keras.layers.SpatialDropout1D;
             Init();
         }
     }
@@ -307,7 +307,7 @@
             Parameters["rate"] = rate;
             Parameters["input_shape"] = data_format;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.SpatialDropout2D;
+            PyInstance = Keras.keras.layers.SpatialDropout2D;
             Init();
         }
     }
@@ -330,7 +330,7 @@
             Parameters["rate"] = rate;
             Parameters["input_shape"] = data_format;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.SpatialDropout3D;
+            PyInstance = Keras.keras.layers.SpatialDropout3D;
             Init();
         }
     }

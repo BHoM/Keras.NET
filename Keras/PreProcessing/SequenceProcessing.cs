@@ -41,7 +41,7 @@ namespace Keras.PreProcessing.sequence
             Parameters["reverse"] = reverse;
             Parameters["batch_size"] = batch_size;
 
-            PyInstance = Instance.keras.preprocessing.sequence.TimeseriesGenerator;
+            PyInstance = Keras.keras.preprocessing.sequence.TimeseriesGenerator;
         }
     }
 }

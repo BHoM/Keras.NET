@@ -30,7 +30,7 @@ namespace Keras.PreProcessing.Text
             Parameters["oov_token"] = oov_token;
             Parameters["document_count"] = document_count;
 
-            PyInstance = Instance.keras.preprocessing.text.Tokenizer;
+            PyInstance = Keras.keras.preprocessing.text.Tokenizer;
         }
 
         public void FitOnTexts(string[] texts)
@@ -85,7 +85,7 @@ namespace Keras.PreProcessing.Text
 
     public class TextUtil : Base
     {
-        static dynamic caller = Instance.keras.preprocessing.text;
+        static dynamic caller = Keras.keras.preprocessing.text;
 
         /// <summary>
         /// Converts a text to a sequence of indexes in a fixed-size hashing space.

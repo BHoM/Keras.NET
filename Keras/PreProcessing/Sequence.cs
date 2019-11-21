@@ -13,7 +13,7 @@ namespace Keras.PreProcessing.sequence
     /// </summary>
     public class SequenceUtil : Base
     {
-        static dynamic caller = Instance.keras.preprocessing.sequence;
+        static dynamic caller = Keras.keras.preprocessing.sequence;
 
         /// <summary>
         /// Pads sequences to the same length.

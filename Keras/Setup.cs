@@ -179,7 +179,7 @@ namespace Keras
                     pipCommand = "pip3";
                     return Convert.ToInt32(versionSplit[0] + versionSplit[1]);
                 }
-                catch (Exception ex)
+                catch
                 {
                     return 0;
                 }

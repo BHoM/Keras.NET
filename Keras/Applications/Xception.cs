@@ -19,7 +19,7 @@ namespace Keras.Applications
         /// <summary>
         /// Initializes a new instance of the <see cref="Xception"/> class.
         /// </summary>
-        private Xception() : base((PyObject)Instance.keras.applications.xception)
+        private Xception() : base((PyObject)Keras.keras.applications.xception)
         {
 
         }

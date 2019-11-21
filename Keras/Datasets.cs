@@ -23,7 +23,7 @@ namespace Keras.Datasets
         /// <returns></returns>
         public static ((NDarray, NDarray), (NDarray, NDarray)) LoadData(string path = "boston_housing.npz", float test_split = 0.2f, int seed = 113)
         {
-            var dlist = TupleSolver.TupleToList(Instance.keras.datasets.boston_housing.load_data(path: path, test_split: test_split, seed: seed));
+            var dlist = TupleSolver.TupleToList(Keras.keras.datasets.boston_housing.load_data(path: path, test_split: test_split, seed: seed));
             return ((dlist[0], dlist[1]), (dlist[2], dlist[3]));
         }
     }
@@ -40,7 +40,7 @@ namespace Keras.Datasets
         /// <returns></returns>
         public static ((NDarray, NDarray), (NDarray, NDarray)) LoadData()
         {
-            var dlist = TupleSolver.TupleToList(Instance.keras.datasets.cifar10.load_data());
+            var dlist = TupleSolver.TupleToList(Keras.keras.datasets.cifar10.load_data());
             return ((dlist[0], dlist[1]), (dlist[2], dlist[3]));
         }
     }
@@ -58,7 +58,7 @@ namespace Keras.Datasets
         /// <returns></returns>
         public static ((NDarray, NDarray), (NDarray, NDarray)) LoadData(string label_mode = "fine")
         {
-            var dlist = TupleSolver.TupleToList(Instance.keras.datasets.cifar10.load_data(label_mode: label_mode));
+            var dlist = TupleSolver.TupleToList(Keras.keras.datasets.cifar10.load_data(label_mode: label_mode));
             return ((dlist[0], dlist[1]), (dlist[2], dlist[3]));
         }
     }
@@ -75,7 +75,7 @@ namespace Keras.Datasets
         /// <returns></returns>
         public static ((NDarray, NDarray), (NDarray, NDarray)) LoadData()
         {
-            var dlist = TupleSolver.TupleToList(Instance.keras.datasets.fashion_mnist.load_data());
+            var dlist = TupleSolver.TupleToList(Keras.keras.datasets.fashion_mnist.load_data());
             return ((dlist[0], dlist[1]), (dlist[2], dlist[3]));
         }
     }
@@ -93,7 +93,7 @@ namespace Keras.Datasets
         /// <returns></returns>
         public static ((NDarray, NDarray), (NDarray, NDarray)) LoadData(string path = "mnist.npz")
         {
-            var dlist = TupleSolver.TupleToList(Instance.keras.datasets.mnist.load_data(path: path));
+            var dlist = TupleSolver.TupleToList(Keras.keras.datasets.mnist.load_data(path: path));
             return ((dlist[0], dlist[1]), (dlist[2], dlist[3]));
         }
     }
@@ -121,7 +121,7 @@ namespace Keras.Datasets
         public static ((NDarray, NDarray), (NDarray, NDarray)) LoadData(string path= "imdb.npz", int? num_words= null, int skip_top= 0, int? maxlen= null, int seed= 113,
                                 int start_char= 1, int oov_char= 2, int index_from= 3)
         {
-            var dlist = TupleSolver.TupleToList(Instance.keras.datasets.imdb.load_data(path: path, num_words: num_words, skip_top: skip_top, maxlen: maxlen, seed: seed, start_char: start_char,
+            var dlist = TupleSolver.TupleToList(Keras.keras.datasets.imdb.load_data(path: path, num_words: num_words, skip_top: skip_top, maxlen: maxlen, seed: seed, start_char: start_char,
                                                 oov_char: oov_char, index_from: index_from));
             return ((dlist[0], dlist[1]), (dlist[2], dlist[3]));
         }
@@ -134,7 +134,7 @@ namespace Keras.Datasets
         public static Dictionary<string, int> GetWordIndex(string path= "imdb_word_index.json")
         {
             Dictionary<string, int> result = new Dictionary<string, int>();
-            PyDict py = new PyDict((PyObject)Instance.keras.datasets.imdb.get_word_index(path: path));
+            PyDict py = new PyDict((PyObject)Keras.keras.datasets.imdb.get_word_index(path: path));
             string[] keys = py.Keys().As<string[]>();
 
             foreach (var item in keys)
@@ -168,7 +168,7 @@ namespace Keras.Datasets
         public static ((NDarray, NDarray), (NDarray, NDarray)) LoadData(string path = "reuters.npz", int? num_words = null, int skip_top = 0, int? maxlen = null, float test_split = 0.2f,
                                 int seed = 113, int start_char = 1, int oov_char = 2, int index_from = 3)
         {
-            var dlist = TupleSolver.TupleToList(Instance.keras.datasets.reuters.load_data(path: path, num_words: num_words, skip_top: skip_top, maxlen: maxlen, test_split: test_split, seed: seed, start_char: start_char,
+            var dlist = TupleSolver.TupleToList(Keras.keras.datasets.reuters.load_data(path: path, num_words: num_words, skip_top: skip_top, maxlen: maxlen, test_split: test_split, seed: seed, start_char: start_char,
                                                 oov_char: oov_char, index_from: index_from));
             return ((dlist[0], dlist[1]), (dlist[2], dlist[3]));
         }

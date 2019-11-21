@@ -17,7 +17,7 @@ namespace Keras.Applications.ResNet
         /// <summary>
         /// Initializes a new instance of the <see cref="ResNet50"/> class.
         /// </summary>
-        private ResNet50() : base((PyObject)Instance.keras.applications.resnet50)
+        private ResNet50() : base((PyObject)Keras.keras.applications.resnet50)
         {
 
         }
@@ -59,7 +59,7 @@ namespace Keras.Applications.ResNet
         /// <summary>
         /// Initializes a new instance of the <see cref="ResNet101"/> class.
         /// </summary>
-        private ResNet101() : base((PyObject)Instance.keras.applications.resnet)
+        private ResNet101() : base((PyObject)Keras.keras.applications.resnet)
         {
 
         }
@@ -101,7 +101,7 @@ namespace Keras.Applications.ResNet
         /// <summary>
         /// Initializes a new instance of the <see cref="ResNet101"/> class.
         /// </summary>
-        private ResNet152() : base((PyObject)Instance.keras.applications.resnet)
+        private ResNet152() : base((PyObject)Keras.keras.applications.resnet)
         {
 
         }

@@ -21,7 +21,7 @@ namespace Keras.Regularizers
         {
             Parameters["l1"] = l1;
             Parameters["l2"] = l2;
-            PyInstance = Instance.keras.regularizers.L1L2;
+            PyInstance = Keras.keras.regularizers.L1L2;
             Init();
         }
     }
@@ -39,7 +39,7 @@ namespace Keras.Regularizers
         public L1(float l1 = 0.01f)
         {
             Parameters["l1"] = l1;
-            PyInstance = Instance.keras.regularizers.L1;
+            PyInstance = Keras.keras.regularizers.L1;
             Init();
         }
     }
@@ -57,7 +57,7 @@ namespace Keras.Regularizers
         public L2(float l2 = 0.01f)
         {
             Parameters["l2"] = l2;
-            PyInstance = Instance.keras.regularizers.L2;
+            PyInstance = Keras.keras.regularizers.L2;
             Init();
         }
     }

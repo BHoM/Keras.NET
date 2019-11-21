@@ -32,7 +32,7 @@
             Parameters["input_length"] = input_length;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.Embedding;
+            PyInstance = Keras.keras.layers.Embedding;
             Init();
         }
     }

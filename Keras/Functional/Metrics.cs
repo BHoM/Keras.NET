@@ -11,7 +11,7 @@ namespace Keras
     /// <seealso cref="Keras.Base" />
     public class Metrics : Base
     {
-        static dynamic caller = Instance.keras.metrics;
+        static dynamic caller = Keras.keras.metrics;
 
         public static NDarray MSE(NDarray y_true, NDarray y_pred)
         {

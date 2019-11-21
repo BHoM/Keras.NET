@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Keras.Helper
 {
-    public class TupleSolver
+    public static class TupleSolver
     {
         public static T[] TupleToList<T>(PyObject obj)
         {

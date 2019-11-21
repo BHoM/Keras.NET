@@ -51,7 +51,7 @@
             Parameters["bias_constraint"] = bias_constraint;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.Conv1D;
+            PyInstance = Keras.keras.layers.Conv1D;
             Init();
         }
     }
@@ -105,7 +105,7 @@
             Parameters["bias_constraint"] = bias_constraint;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.Conv2D;
+            PyInstance = Keras.keras.layers.Conv2D;
             Init();
         }
     }
@@ -163,7 +163,7 @@
             Parameters["bias_constraint"] = bias_constraint;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.Conv3D;
+            PyInstance = Keras.keras.layers.Conv3D;
             Init();
         }
     }
@@ -227,7 +227,7 @@
             Parameters["bias_constraint"] = bias_constraint;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.SeparableConv1D;
+            PyInstance = Keras.keras.layers.SeparableConv1D;
             Init();
         }
     }
@@ -291,7 +291,7 @@
             Parameters["bias_constraint"] = bias_constraint;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.SeparableConv2D;
+            PyInstance = Keras.keras.layers.SeparableConv2D;
             Init();
         }
     }
@@ -348,7 +348,7 @@
             Parameters["bias_constraint"] = bias_constraint;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.DepthwiseConv2D;
+            PyInstance = Keras.keras.layers.DepthwiseConv2D;
             Init();
         }
     }
@@ -407,7 +407,7 @@
             Parameters["bias_constraint"] = bias_constraint;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.Conv2DTranspose;
+            PyInstance = Keras.keras.layers.Conv2DTranspose;
             Init();
         }
     }
@@ -464,7 +464,7 @@
             Parameters["bias_constraint"] = bias_constraint;
             Parameters["input_shape"] = input_shape;
 
-            PyInstance = Instance.keras.layers.Conv3DTranspose;
+            PyInstance = Keras.keras.layers.Conv3DTranspose;
             Init();
         }
     }
@@ -484,7 +484,7 @@
         {
             Parameters["cropping"] = cropping == null ? new Shape(1, 1) : new Shape(cropping.Item1, cropping.Item2);
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.Cropping1D;
+            PyInstance = Keras.keras.layers.Cropping1D;
             Init();
         }
     }
@@ -507,7 +507,7 @@
                                 : new Shape[] { new Shape(cropping.Item1.Item1, cropping.Item1.Item2), new Shape(cropping.Item2.Item1, cropping.Item2.Item2) };
             Parameters["data_format"] = data_format;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.Cropping2D;
+            PyInstance = Keras.keras.layers.Cropping2D;
             Init();
         }
     }
@@ -530,7 +530,7 @@
                                 : new Shape[] { new Shape(cropping.Item1.Item1, cropping.Item1.Item2), new Shape(cropping.Item2.Item1, cropping.Item2.Item2), new Shape(cropping.Item3.Item1, cropping.Item3.Item2) };
             Parameters["data_format"] = data_format;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.Cropping3D;
+            PyInstance = Keras.keras.layers.Cropping3D;
             Init();
         }
     }
@@ -550,7 +550,7 @@
         {
             Parameters["size"] = size;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.UpSampling1D;
+            PyInstance = Keras.keras.layers.UpSampling1D;
             Init();
         }
     }
@@ -574,7 +574,7 @@
             Parameters["data_format"] = data_format;
             Parameters["interpolation"] = interpolation;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.UpSampling2D;
+            PyInstance = Keras.keras.layers.UpSampling2D;
             Init();
         }
     }
@@ -596,7 +596,7 @@
             Parameters["size"] = size == null ? new Shape(2, 2, 2) : new Shape(size.Item1, size.Item2, size.Item3);
             Parameters["data_format"] = data_format;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.UpSampling3D;
+            PyInstance = Keras.keras.layers.UpSampling3D;
             Init();
         }
     }
@@ -616,7 +616,7 @@
         {
             Parameters["padding"] = padding;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.ZeroPadding1D;
+            PyInstance = Keras.keras.layers.ZeroPadding1D;
             Init();
         }
     }
@@ -638,7 +638,7 @@
             Parameters["padding"] = padding == null ? new Shape(2, 2) : new Shape(padding.Item1, padding.Item2);
             Parameters["data_format"] = data_format;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.ZeroPadding2D;
+            PyInstance = Keras.keras.layers.ZeroPadding2D;
             Init();
         }
     }
@@ -660,7 +660,7 @@
             Parameters["padding"] = padding == null ? new Shape(2, 2, 2) : new Shape(padding.Item1, padding.Item2, padding.Item3);
             Parameters["data_format"] = data_format;
             Parameters["input_shape"] = input_shape;
-            PyInstance = Instance.keras.layers.ZeroPadding3D;
+            PyInstance = Keras.keras.layers.ZeroPadding3D;
             Init();
         }
     }
