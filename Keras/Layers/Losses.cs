@@ -9,46 +9,33 @@ namespace Keras.Layers
     /// <summary>
     /// Calculates the mean squared error.
     /// </summary>
-    public class MeanSquaredError : BaseLayer
+    public abstract class BaseLoss : Base
     {
-        public MeanSquaredError()
-        {
-            PyInstance = Keras.keras.losses.mean_squared_error;
-        }
+        public abstract Func<NDarray, NDarray, NDarray> Call { get; }
     }
 
-
     /// <summary>
-    /// Calculates the mean absolute error.
+    /// Calculates the mean squared error.
     /// </summary>
-    public class MeanAbsoluteError : BaseLayer
+    public class MeanSquaredError : BaseLoss
     {
-        public MeanAbsoluteError()
-        {
-            PyInstance = Keras.keras.losses.mean_absolute_error;
-        }
+        public override Func<NDarray, NDarray, NDarray> Call { get => k.Losses.MeanSquaredError; }
     }
 
     /// <summary>
     /// Binaries the crossentropy.
     /// </summary>
-    public class BinaryCrossentropy : BaseLayer
+    public class BinaryCrossentropy : BaseLoss
     {
-        public BinaryCrossentropy()
-        {
-            PyInstance = Keras.keras.losses.binary_crossentropy;
-        }
+        public override Func<NDarray, NDarray, NDarray> Call { get => k.Losses.BinaryCrossentropy; }
     }
 
     /// <summary>
     /// Categoricals the crossentropy.
     /// </summary>
-    public class CategoricalCrossentropy : BaseLayer
+    public class CategoricalCrossentropy : BaseLoss
     {
-        public CategoricalCrossentropy()
-        {
-            PyInstance = Keras.keras.losses.categorical_crossentropy;
-        }
+        public override Func<NDarray, NDarray, NDarray> Call { get => k.Losses.CategoricalCrossentropy; }
     }
 
     ///// <summary>
