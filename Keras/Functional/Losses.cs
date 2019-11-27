@@ -139,6 +139,22 @@ namespace Keras
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters["y_true"] = y_true;
             parameters["y_pred"] = y_pred;
+            parameters["with_logits"] = true;
+            return new NDarray(InvokeStaticMethod(caller, "categorical_crossentropy", parameters));
+        }
+
+        /// <summary>
+        /// Categoricals the crossentropy.
+        /// </summary>
+        /// <param name="y_true">tensor of true targets.</param>
+        /// <param name="y_pred">tensor of predicted targets.</param>
+        /// <returns></returns>
+        public static NDarray NegLogLikelihood(NDarray y_true, NDarray y_pred)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters["y_true"] = y_true;
+            parameters["y_pred"] = y_pred;
+            parameters["with_logits"] = false;
             return new NDarray(InvokeStaticMethod(caller, "categorical_crossentropy", parameters));
         }
 
@@ -167,6 +183,21 @@ namespace Keras
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters["y_true"] = y_true;
             parameters["y_pred"] = y_pred;
+            return new NDarray(InvokeStaticMethod(caller, "binary_crossentropy", parameters));
+        }
+
+        /// <summary>
+        /// Crossentropy with sigmoid activation
+        /// </summary>
+        /// <param name="y_true">tensor of true targets.</param>
+        /// <param name="y_pred">tensor of predicted targets.</param>
+        /// <returns></returns>
+        public static NDarray BCEWithLogits(NDarray y_true, NDarray y_pred)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters["y_true"] = y_true;
+            parameters["y_pred"] = y_pred;
+            parameters["with_logits"] = true;
             return new NDarray(InvokeStaticMethod(caller, "binary_crossentropy", parameters));
         }
 
