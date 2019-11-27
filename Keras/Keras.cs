@@ -13,11 +13,9 @@ namespace Keras
         /**** Public Properties                         ****/
         /***************************************************/
 
-        //public static PyObject Instance { get { return _instance.Value; } }
+        public static dynamic keras { get { return _keras.Value; } private set { keras = value; } }
 
-        public static dynamic keras { get { return _instance.Value; } private set { keras = value; } }
-
-        public static dynamic tensorflow { get; set; } = null;
+        public static dynamic tensorflow { get { return _tensorflow.Value; } private set { _tensorflow = value; } }
 
         //public static dynamic keras2onnx { get; set; } = null;
 
@@ -28,7 +26,7 @@ namespace Keras
         /**** Private Fields                            ****/
         /***************************************************/
 
-        private static Lazy<PyObject> _instance = new Lazy<PyObject>(() =>
+        private static Lazy<PyObject> _keras = new Lazy<PyObject>(() =>
         {
             Installer.SetupPython().Wait();
             PythonEngine.Initialize();
@@ -36,6 +34,15 @@ namespace Keras
             return Py.Import("tensorflow.keras");
         });
 
+        /***************************************************/
+
+        private static Lazy<PyObject> _tensorflow = new Lazy<PyObject>(() =>
+        {
+            Installer.SetupPython().Wait();
+            PythonEngine.Initialize();
+            TryInstall("tensorflow");
+            return Py.Import("tensorflow");
+        });
 
         /***************************************************/
         /**** Public Methods                            ****/
