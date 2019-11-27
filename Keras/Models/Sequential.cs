@@ -33,11 +33,28 @@ namespace Keras.Models
         /// Initializes a new instance of the <see cref="Sequential"/> class.
         /// </summary>
         /// <param name="layers">The layers.</param>
-        public Sequential(BaseLayer[] layers) : this()
+        public Sequential(Base[] layers) : this()
         {
             foreach (var item in layers)
             {
-                Add(item.PyInstance);
+                Add(item);
+            }
+        }
+
+        /// <summary>
+        /// Stacks a layer or loss operation on the top of the current ones
+        /// </summary>
+        /// <param name="layer">The layer.</param>
+        public void Add(Base module)
+        {
+            switch (module)
+            {
+                case BaseLayer layer:
+                    Add(layer); return;
+                case BaseLoss loss:
+                    Add(loss); return;
+                default:
+                    throw new NotImplementedException($"module must be an instance of k.Layers.BaseLayer or k.Layers.BaseLoss, not {module.GetType()}");
             }
         }
 
@@ -48,6 +65,15 @@ namespace Keras.Models
         public void Add(BaseLayer layer)
         {
             PyInstance.add(layer: layer.PyInstance);
+        }
+
+        /// <summary>
+        /// You can also losses via the .Add() method
+        /// </summary>
+        /// <param name="loss">The loss function.</param>
+        public void Add(BaseLoss loss)
+        {
+            PyInstance.add_loss(losses: loss.PyInstance);
         }
     }
 }
