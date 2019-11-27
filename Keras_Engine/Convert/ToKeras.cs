@@ -36,7 +36,7 @@ namespace BH.Engine.Keras
         /**** Public Methods - Interfaces               ****/
         /***************************************************/
 
-        public static k.Layers.BaseLayer IToKeras(this IModule module)
+        public static k.Base IToKeras(this IModule module)
         {
             return ToKeras(module as dynamic);
         }
@@ -110,6 +110,13 @@ namespace BH.Engine.Keras
 
         /***************************************************/
         /**** Public Methods - Losses                   ****/
+        /***************************************************/
+
+        public static k.Layers.BinaryCrossentropy ToKeras(this BCEWithSigmoid bceWithLogits)
+        {
+            return new k.Layers.BinaryCrossentropy();
+        }
+
         /***************************************************/
 
         public static k.Layers.BinaryCrossentropy ToKeras(this BinaryCrossEntropy bce)
