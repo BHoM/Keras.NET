@@ -144,8 +144,10 @@ namespace Keras.Layers
         /// </summary>
         public Sigmoid()
         {
-            PyInstance = Keras.keras.activations.sigmoid;
-            Init();
+            Parameters["activation"] = Keras.keras.activations.sigmoid;
+
+            PyInstance = Keras.keras.layers.Activation;
+            Init();            
         }
     }
 
@@ -159,7 +161,9 @@ namespace Keras.Layers
         /// </summary>
         public Tanh()
         {
-            PyInstance = Keras.keras.activations.tanh;
+            Parameters["activation"] = Keras.keras.activations.tanh;
+
+            PyInstance = Keras.keras.layers.Activation;
             Init();
         }
     }
