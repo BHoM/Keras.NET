@@ -45,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BH.UI.Python.Included" Version="3.7.3.8-alpha" />
+    <PackageReference Include="BH.UI.Python.Included" Version="3.7.3.9-alpha" />
     <PackageReference Include="BH.UI.Python.Runtime" Version="3.7.4-alpha" />
     <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
   </ItemGroup>
