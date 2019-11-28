@@ -76,8 +76,8 @@
       <HintPath>..\..\BHoM\Build\DeepLearning_oM.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Python.Included, Version=3.7.8.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BH.UI.Python.Included.3.7.3.8-alpha\lib\netstandard2.0\Python.Included.dll</HintPath>
+    <Reference Include="Python.Included, Version=3.7.9.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BH.UI.Python.Included.3.7.3.9-alpha\lib\netstandard2.0\Python.Included.dll</HintPath>
     </Reference>
     <Reference Include="Python.Runtime, Version=3.7.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\BH.UI.Python.Runtime.3.7.4-alpha\lib\netstandard2.0\Python.Runtime.dll</HintPath>
