@@ -30,7 +30,7 @@ namespace Keras
         {
             Installer.SetupPython().Wait();
             PythonEngine.Initialize();
-            TryInstall("tensorflow");
+            TryInstall("tensorflow", "2.0");
             return Py.Import("tensorflow.keras");
         });
 
@@ -40,7 +40,7 @@ namespace Keras
         {
             Installer.SetupPython().Wait();
             PythonEngine.Initialize();
-            TryInstall("tensorflow");
+            TryInstall("tensorflow", "2.0");
             return Py.Import("tensorflow");
         });
 
@@ -145,14 +145,12 @@ namespace Keras
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static bool TryInstall(string module)
+        private static bool TryInstall(string module, string version="")
         {
             try
             {
-                if (!Python.Included.Installer.IsModuleInstalled(module))
-                    Python.Included.Installer.PipInstallModule(module);
+                Python.Included.Installer.PipInstallModule(module, version);
                 Py.Import(module);
-
                 return true;
             }
             catch
