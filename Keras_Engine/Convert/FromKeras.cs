@@ -27,6 +27,7 @@ using BH.oM.DeepLearning.Layers;
 using BH.oM.DeepLearning.Activations;
 using System.Linq;
 using BH.oM.DeepLearning;
+using BH.oM.DeepLearning.Losses;
 
 namespace BH.Engine.Keras
 {
@@ -36,7 +37,7 @@ namespace BH.Engine.Keras
         /**** Public Methods - General                  ****/
         /***************************************************/
 
-        public static IShape ToBHoM(this k.Shape shape)
+        public static IShape FromKeras(this k.Shape shape)
         {
             switch (shape.Dimensions.Length)
             {
@@ -49,12 +50,40 @@ namespace BH.Engine.Keras
             }
         }
 
+        /***************************************************/
+
+        public static IModule FromKeras(this k.Base module)
+        {
+            return FromKeras(module as dynamic);
+        }
+
+
+        /***************************************************/
+        /**** Public Methods - Enums                    ****/
+        /***************************************************/
+
+        public static Reduce FromKeras(string reduction)
+        {
+            switch(reduction)
+            {
+                case "auto":
+                    return Reduce.Sum;
+                case "mean":
+                    return Reduce.Mean;
+                case "sum":
+                    return Reduce.Sum;
+                case "none":
+                    return Reduce.No;
+                default:
+                    return Reduce.No;
+            }
+        }
 
         /***************************************************/
         /**** Public Methods - Activations              ****/
         /***************************************************/
 
-        public static LeakyReLU ToBHoM(this k.Layers.LeakyReLU leakyRelu)
+        public static LeakyReLU FromKeras(this k.Layers.LeakyReLU leakyRelu)
         {
             return new LeakyReLU()
             {
@@ -64,21 +93,21 @@ namespace BH.Engine.Keras
 
         /***************************************************/
 
-        public static ReLU ToBHoM(this k.Layers.ReLU leakyRelu)
+        public static ReLU FromKeras(this k.Layers.ReLU leakyRelu)
         {
             return new ReLU();
         }
 
         /***************************************************/
 
-        //public static Sigmoid ToBHoM(this k.Layers.Sigmoid leakyRelu)
+        //public static Sigmoid FromKeras(this k.Layers.Sigmoid leakyRelu)
         //{
         //    return new Sigmoid();
         //}
 
         /***************************************************/
 
-        public static Softmax ToBHoM(this k.Layers.Softmax softmax)
+        public static Softmax FromKeras(this k.Layers.Softmax softmax)
         {
             return new Softmax()
             {
@@ -88,24 +117,88 @@ namespace BH.Engine.Keras
 
         /***************************************************/
 
-        //public static Tanh ToBHoM(this k.Layers.Tanh tanh)
+        //public static Tanh FromKeras(this k.Layers.Tanh tanh)
         //{
         //    return new Tanh();
         //}
+
+
+
+        /***************************************************/
+        /**** Public Methods - Losses                   ****/
+        /***************************************************/
+
+        public static BCEWithSigmoid FromKeras(this k.Layers.BCEWithLogits bceWithSigmoid)
+        {
+            return new BCEWithSigmoid()
+            {
+                Reduce = FromKeras((bceWithSigmoid.Parameters["reduction"] as string)),
+            };
+        }
+
+        /***************************************************/
+
+        public static BinaryCrossEntropy FromKeras(this k.Layers.BinaryCrossentropy bce)
+        {
+            return new BinaryCrossEntropy() 
+            {
+                Reduce = FromKeras((bce.Parameters["reduction"] as string)),
+            };
+        }
+
+        /***************************************************/
+
+        public static CrossEntropy FromKeras(this k.Layers.CategoricalCrossentropy crossEntropy)
+        {
+            return new CrossEntropy()
+            {
+                Reduce = FromKeras((crossEntropy.Parameters["reduction"] as string)),
+            };
+        }
+
+        /***************************************************/
+
+        public static L1 FromKeras(this k.Layers.MeanAbsoluteError mae)
+        {
+            return new L1()
+            {
+                Reduce = FromKeras((mae.Parameters["reduction"] as string))
+            };
+        }
+
+        /***************************************************/
+
+        public static MeanSquareError FromKeras(this k.Layers.MeanSquaredError mse)
+        {
+            return new MeanSquareError()
+            {
+                Reduce = FromKeras((mse.Parameters["reduction"] as string))
+            };
+        }
+
+        /***************************************************/
+        
+        public static NegativeLogLikelihood FromKeras(this k.Layers.NegLogLikelihood nll)
+        {
+            return new NegativeLogLikelihood()
+            {
+                Reduce = FromKeras((nll.Parameters["reduction"] as string)),
+            };
+        }
 
 
         /***************************************************/
         /**** Public Methods - Operations               ****/
         /***************************************************/
 
-        public static AvgPooling2d ToBHoM(this k.Layers.AveragePooling2D avgPool2d, Tuple<int, int, int> inputShape)
+        public static AvgPooling2d FromKeras(this k.Layers.AveragePooling2D avgPool2d, Tuple<int, int, int> inputShape)
         {
             k.Shape kernelSize = (k.Shape)avgPool2d.Parameters["pool_size"];
             k.Shape stride = (k.Shape)avgPool2d.Parameters["strides"];
             return new AvgPooling2d()
             {
-                KernelSize = kernelSize.ToBHoM() as Shape2d,
-                Stride = stride.ToBHoM() as Shape2d,
+                KernelSize = kernelSize.FromKeras() as Shape2d,
+                Stride = stride.FromKeras() as Shape2d,
                 Padding = new oM.DeepLearning.Shape2d()
                 {
                     Dim1 = Query.Padding(inputShape.Item2, kernelSize[0], stride[0]),
@@ -116,22 +209,22 @@ namespace BH.Engine.Keras
 
         /***************************************************/
 
-        public static Convolution2d ToBHoM(this k.Layers.Conv2D conv2d, int featuresIn)
+        public static Convolution2d FromKeras(this k.Layers.Conv2D conv2d, int featuresIn)
         {
             return new Convolution2d()
             {
                 FeaturesIn = featuresIn,
                 FeaturesOut = (int)conv2d.Parameters["filters"],
-                KernelSize = ((k.Shape)conv2d.Parameters["kernel_size"]).ToBHoM() as Shape2d,
-                Stride = ((k.Shape)conv2d.Parameters["strides"]).ToBHoM() as Shape2d,
+                KernelSize = ((k.Shape)conv2d.Parameters["kernel_size"]).FromKeras() as Shape2d,
+                Stride = ((k.Shape)conv2d.Parameters["strides"]).FromKeras() as Shape2d,
                 Padding = (string)conv2d.Parameters["padding"] == "same" ? new Shape2d { Dim1 = 1, Dim2 = 1 } : new Shape2d { Dim1 = 0, Dim2 = 0 },
-                Dilation = ((k.Shape)conv2d.Parameters["dilation_rate"]).ToBHoM() as Shape2d,
+                Dilation = ((k.Shape)conv2d.Parameters["dilation_rate"]).FromKeras() as Shape2d,
             };
         }
 
         /***************************************************/
 
-        public static GRU ToBHoM(this k.Layers.GRU gru, int inputSize)
+        public static GRU FromKeras(this k.Layers.GRU gru, int inputSize)
         {
             return new GRU()
             {
@@ -146,7 +239,7 @@ namespace BH.Engine.Keras
 
         /***************************************************/
 
-        public static LSTM ToBHoM(this k.Layers.LSTM gru, int inputSize)
+        public static LSTM FromKeras(this k.Layers.LSTM gru, int inputSize)
         {
             return new LSTM()
             {
@@ -161,33 +254,43 @@ namespace BH.Engine.Keras
 
         /***************************************************/
 
-        public static MaxPooling2d ToBHoM(this k.Layers.MaxPooling2D maxPool2d, IShape inputShape = null)
+        public static MaxPooling2d FromKeras(this k.Layers.MaxPooling2D maxPool2d, IShape inputShape = null)
         {
             return new MaxPooling2d()
             {
-                KernelSize = ((k.Shape)maxPool2d.Parameters["pool_size"])?.ToBHoM() as Shape2d,
-                Stride = ((k.Shape)maxPool2d.Parameters["strides"])?.ToBHoM() as Shape2d,
+                KernelSize = ((k.Shape)maxPool2d.Parameters["pool_size"])?.FromKeras() as Shape2d,
+                Stride = ((k.Shape)maxPool2d.Parameters["strides"])?.FromKeras() as Shape2d,
                 Padding = (string)maxPool2d.Parameters["padding"] == "same" ? new Shape2d { Dim1 = 1, Dim2 = 1 } : new Shape2d { Dim1 = 0, Dim2 = 0 },
             };
         }
 
         /***************************************************/
 
-        public static TransposedConvolution2d ToBHoM(this k.Layers.Conv2DTranspose transposedConv2d, int featuresIn, Shape2d outSize = null)
+        public static TransposedConvolution2d FromKeras(this k.Layers.Conv2DTranspose transposedConv2d, int featuresIn, Shape2d outSize = null)
         {
             return new TransposedConvolution2d()
             {
                 FeaturesIn = featuresIn,
                 FeaturesOut = (int)transposedConv2d.Parameters["filters"],
-                KernelSize = ((k.Shape)transposedConv2d.Parameters["kernel_size"]).ToBHoM() as Shape2d,
-                Stride = ((k.Shape)transposedConv2d.Parameters["strides"]).ToBHoM() as Shape2d,
+                KernelSize = ((k.Shape)transposedConv2d.Parameters["kernel_size"]).FromKeras() as Shape2d,
+                Stride = ((k.Shape)transposedConv2d.Parameters["strides"]).FromKeras() as Shape2d,
                 Padding = (string)transposedConv2d.Parameters["padding"] == "same" ? new Shape2d { Dim1 = 1, Dim2 = 1 } : new Shape2d { Dim1 = 0, Dim2 = 0 },
-                Dilation = ((k.Shape)transposedConv2d.Parameters["dilation_rate"]).ToBHoM() as Shape2d,
+                Dilation = ((k.Shape)transposedConv2d.Parameters["dilation_rate"]).FromKeras() as Shape2d,
                 OutputSize = outSize,
             };
         }
 
+
+        /***************************************************/
+        /**** Fallback                                  ****/
         /***************************************************/
 
+        private static object FromKeras(object fallback)
+        {
+            Engine.Reflection.Compute.RecordError($"No Convert method found for {fallback?.GetType()}");
+            return null;
+        }
+        
+        /***************************************************/
     }
 }

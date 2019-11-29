@@ -4,15 +4,25 @@ using System.Collections.Generic;
 using System.Text;
 using k = Keras;
 
-namespace Keras
+namespace Keras.Layers
 {
     /// <summary>
     /// Calculates the mean absolute error, also known as L1 loss.
     /// </summary>
-    public class MeanAbsoluteError : Base
+    public class BaseLoss : Base
     {
-        public MeanAbsoluteError()
+    }
+
+    /// <summary>
+    /// Calculates the mean absolute error, also known as L1 loss.
+    /// </summary>
+    public class MeanAbsoluteError : BaseLoss
+    {
+        public MeanAbsoluteError(string reduction = null)
         {
+            Parameters["reduction"] = reduction ?? "auto";
+            Parameters["name"] = "mean_absolute_error";
+
             PyInstance = Keras.keras.losses.MeanAbsoluteError;
             Init();
         }
@@ -21,10 +31,13 @@ namespace Keras
     /// <summary>
     /// Calculates the mean squared error.
     /// </summary>
-    public class MeanSquaredError : Base
+    public class MeanSquaredError : BaseLoss
     {
-        public MeanSquaredError()
+        public MeanSquaredError(string reduction = null)
         {
+            Parameters["reduction"] = reduction ?? "auto";
+            Parameters["name"] = "mean_squared_error";
+
             PyInstance = Keras.keras.losses.MeanSquaredError;
             Init();
         }
@@ -33,11 +46,13 @@ namespace Keras
     /// <summary>
     /// Computes the cross-entropy loss between true labels and predicted labels.
     /// </summary>
-    public class BinaryCrossentropy : Base
+    public class BinaryCrossentropy : BaseLoss
     {
-        public BinaryCrossentropy()
+        public BinaryCrossentropy(string reduction = null)
         {
             Parameters["from_logits"] = true;
+            Parameters["reduction"] = reduction ?? "auto";
+            Parameters["name"] = "binary_crossentropy";
 
             PyInstance = Keras.keras.losses.BinaryCrossentropy;
             Init();
@@ -47,11 +62,13 @@ namespace Keras
     /// <summary>
     /// Computes the sigmoid and the cross-entropy loss between true labels and predicted labels.
     /// </summary>
-    public class BCEWithLogits : Base
+    public class BCEWithLogits : BaseLoss
     {
-        public BCEWithLogits()
+        public BCEWithLogits(string reduction = null)
         {
             Parameters["from_logits"] = false;
+            Parameters["reduction"] = reduction ?? "auto";
+            Parameters["name"] = "binary_crossentropy";
 
             PyInstance = Keras.keras.losses.BinaryCrossentropy;
             Init();
@@ -61,12 +78,14 @@ namespace Keras
     /// <summary>
     /// Categoricals the crossentropy.
     /// </summary>
-    public class CategoricalCrossentropy : Base
+    public class CategoricalCrossentropy : BaseLoss
     {
-        public CategoricalCrossentropy()
+        public CategoricalCrossentropy(string reduction = null)
         {
             Parameters["from_logits"] = true;
-        
+            Parameters["reduction"] = reduction ?? "auto";
+            Parameters["name"] = "categorical_crossentropy";
+
             PyInstance = Keras.keras.losses.CategoricalCrossentropy;
             Init();
         }
@@ -75,11 +94,13 @@ namespace Keras
     /// <summary>
     /// Categoricals the crossentropy.
     /// </summary>
-    public class NegLogLikelihood : Base
+    public class NegLogLikelihood : BaseLoss
     {
-        public NegLogLikelihood()
+        public NegLogLikelihood(string reduction = null)
         {
             Parameters["from_logits"] = false;
+            Parameters["reduction"] = reduction ?? "auto";
+            Parameters["name"] = "categorical_crossentropy";
 
             PyInstance = Keras.keras.losses.CategoricalCrossentropy;
             Init();

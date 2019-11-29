@@ -27,6 +27,7 @@ using BH.oM.DeepLearning.Layers;
 using BH.oM.DeepLearning.Activations;
 using BH.oM.DeepLearning.Losses;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace BH.Engine.Keras
 {
@@ -41,6 +42,24 @@ namespace BH.Engine.Keras
             return ToKeras(module as dynamic);
         }
 
+        /***************************************************/
+        /**** Public Methods - Enums                    ****/
+        /***************************************************/
+
+        public static string ToKeras(this Reduce reduction)
+        {
+            switch(reduction)
+            {
+                case Reduce.Mean:
+                    return "mean";
+                case Reduce.Sum:
+                    return "sum";
+                case Reduce.No:
+                    return "none";
+                default:
+                    return "none";
+            }
+        }
 
         /***************************************************/
         /**** Public Methods - Shape                    ****/
@@ -71,7 +90,26 @@ namespace BH.Engine.Keras
 
         public static k.Models.Sequential ToKeras(this oM.DeepLearning.Models.Sequential sequential)
         {
-            return new k.Models.Sequential(sequential.Modules.Select(x => x.IToKeras()).ToArray());
+            k.Models.Sequential kerasModel = new k.Models.Sequential();
+
+            List<k.Layers.BaseLoss> losses = new List<k.Layers.BaseLoss>();
+            foreach(IModule module in sequential.Modules)
+            {
+                k.Base layer = module.IToKeras();
+                switch(layer)
+                {
+                    case k.Layers.BaseLayer operation:
+                        kerasModel.Add(operation);
+                        continue;
+                    case k.Layers.BaseLoss loss:
+                        losses.Add(loss);
+                        continue;
+                    default:
+                        continue;
+                }
+            }
+
+            return kerasModel;
         }
 
         /***************************************************/
@@ -100,45 +138,52 @@ namespace BH.Engine.Keras
             return new k.Layers.ReLU();
         }
 
-        /***************************************************/
-
-        //public static k.Layers.Sigmoid ToKeras(this Sigmoid sigmoid)
-        //{
-        //    return new k.Layers.Sigmoid();
-        //}
-
 
         /***************************************************/
         /**** Public Methods - Losses                   ****/
         /***************************************************/
 
-        public static k.Layers.BinaryCrossentropy ToKeras(this BCEWithSigmoid bceWithLogits)
+        public static k.Layers.BCEWithLogits ToKeras(this BCEWithSigmoid bceWithSigmoid)
         {
-            return new k.Layers.BinaryCrossentropy();
+            return new k.Layers.BCEWithLogits(bceWithSigmoid.Reduce.ToKeras());
         }
-
+        
         /***************************************************/
 
         public static k.Layers.BinaryCrossentropy ToKeras(this BinaryCrossEntropy bce)
         {
-            return new k.Layers.BinaryCrossentropy();
-        }
-
-        /***************************************************/
-
-        public static k.Layers.MeanSquaredError ToKeras(this MeanSquareError mse)
-        {
-            return new k.Layers.MeanSquaredError();
+            return new k.Layers.BinaryCrossentropy(bce.Reduce.ToKeras());
         }
 
         /***************************************************/
 
         public static k.Layers.CategoricalCrossentropy ToKeras(this CrossEntropy crossEntropy)
         {
-            return new k.Layers.CategoricalCrossentropy();
+            return new k.Layers.CategoricalCrossentropy(crossEntropy.Reduce.ToKeras());
         }
 
-        
+        /***************************************************/
+
+        public static k.Layers.MeanAbsoluteError ToKeras(this L1 mae)
+        {
+            return new k.Layers.MeanAbsoluteError(mae.Reduce.ToKeras());
+        }
+
+        /***************************************************/
+
+        public static k.Layers.MeanSquaredError ToKeras(this MeanSquareError mse)
+        {
+            return new k.Layers.MeanSquaredError(mse.Reduce.ToKeras());
+        }
+
+        /***************************************************/
+
+        public static k.Layers.NegLogLikelihood ToKeras(this NegativeLogLikelihood nll)
+        {
+            return new k.Layers.NegLogLikelihood(nll.Reduce.ToKeras());
+        }
+
+
         /***************************************************/
         /**** Public Methods - Layers                   ****/
         /***************************************************/
