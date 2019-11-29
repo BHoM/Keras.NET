@@ -33,28 +33,11 @@ namespace Keras.Models
         /// Initializes a new instance of the <see cref="Sequential"/> class.
         /// </summary>
         /// <param name="layers">The layers.</param>
-        public Sequential(Base[] layers) : this()
+        public Sequential(BaseLayer[] layers) : this()
         {
             foreach (var item in layers)
             {
-                Add(item);
-            }
-        }
-
-        /// <summary>
-        /// Stacks a layer or loss operation on the top of the current ones
-        /// </summary>
-        /// <param name="layer">The layer.</param>
-        public void Add(Base module)
-        {
-            switch (module)
-            {
-                case BaseLayer layer:
-                    Add(layer); return;
-                case BaseLoss loss:
-                    Add(loss); return;
-                default:
-                    throw new NotImplementedException($"module must be an instance of k.Layers.BaseLayer or k.Layers.BaseLoss, not {module.GetType()}");
+                PyInstance.add(layer: item.PyInstance);
             }
         }
 

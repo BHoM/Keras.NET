@@ -38,7 +38,7 @@ namespace BH.Engine.Keras
             // Note that the division by 2 means that there might be cases
             // when the padding on both sides (top vs bottom, right vs left) are off by one.
             // In this case, the bottom and right sides always get the one additional padded pixel
-            Shape3d shape = (conv2d.Parameters["input_shape"] as k.Shape).ToBHoM() as Shape3d;
+            Shape3d shape = (conv2d.Parameters["input_shape"] as k.Shape).FromKeras() as Shape3d;
 
             switch ((conv2d.Parameters["padding"] as string)?.ToLower())
             {
@@ -67,7 +67,7 @@ namespace BH.Engine.Keras
             // Note that the division by 2 means that there might be cases
             // when the padding on both sides (top vs bottom, right vs left) are off by one.
             // In this case, the bottom and right sides always get the one additional padded pixel
-            Shape3d shape = (transposedConv2d.Parameters["input_shape"] as k.Shape).ToBHoM() as Shape3d;
+            Shape3d shape = (transposedConv2d.Parameters["input_shape"] as k.Shape).FromKeras() as Shape3d;
 
             switch ((transposedConv2d.Parameters["padding"] as string)?.ToLower())
             {

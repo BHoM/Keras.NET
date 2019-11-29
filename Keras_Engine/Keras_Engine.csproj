@@ -96,7 +96,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Convert\ToBHoM.cs" />
+    <Compile Include="Convert\FromKeras.cs" />
     <Compile Include="Convert\ToTuple.cs" />
     <Compile Include="External\Constructors.cs" />
     <Compile Include="External\Methods.cs" />
