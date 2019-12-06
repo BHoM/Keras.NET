@@ -28,6 +28,7 @@ using BH.oM.DeepLearning.Activations;
 using System.Linq;
 using BH.oM.DeepLearning;
 using BH.oM.DeepLearning.Losses;
+using BH.oM.DeepLearning.Optimisers;
 
 namespace BH.Engine.Keras
 {
@@ -295,6 +296,33 @@ namespace BH.Engine.Keras
                 Padding = (string)transposedConv2d.Parameters["padding"] == "same" ? new Shape2d { Dim1 = 1, Dim2 = 1 } : new Shape2d { Dim1 = 0, Dim2 = 0 },
                 Dilation = ((k.Shape)transposedConv2d.Parameters["dilation_rate"]).FromKeras() as Shape2d,
                 OutputSize = outSize,
+            };
+        }
+        /***************************************************/
+        /**** Public Methods - Optimisers               ****/
+        /***************************************************/
+
+        public static SGD FromKeras(this k.Optimizers.SGD sgd)
+        {
+            return new SGD()
+            {
+                LearningRate = (double)sgd.Parameters["lr"],
+                Momentum = (double)sgd.Parameters["momentum"],
+                Nesterov = (bool)sgd.Parameters["nesterov"],
+                WeightDecay = (double)sgd.Parameters["decay"]
+            };
+        }
+
+        /***************************************************/
+
+        public static Adam FromKeras(this k.Optimizers.Adam adam)
+        {
+            return new Adam()
+            {
+                LearningRate = (double)adam.Parameters["lr"],
+                Beta1 = (double)adam.Parameters["beta_1"],
+                Beta2 = (double)adam.Parameters["beta_2"],
+                WeightDecay = (double)adam.Parameters["decay"]
             };
         }
 
