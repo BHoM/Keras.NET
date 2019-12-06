@@ -26,6 +26,7 @@ using BH.oM.DeepLearning;
 using BH.oM.DeepLearning.Layers;
 using BH.oM.DeepLearning.Activations;
 using BH.oM.DeepLearning.Losses;
+using BH.oM.DeepLearning.Optimisers;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -289,6 +290,23 @@ namespace BH.Engine.Keras
                 strides: transposedConv2d.Stride.ToTuple(),
                 padding: transposedConv2d.Padding.Dim1 == 0 && transposedConv2d.Padding.Dim2 == 0 ? "valid" : "same",
                 dilation_rate: transposedConv2d.Dilation.ToTuple());
+        }
+
+
+        /***************************************************/
+        /**** Public Methods - Optimisers               ****/
+        /***************************************************/
+
+        public static k.Optimizers.SGD ToBHoM(this SGD sgd)
+        {
+            return new k.Optimizers.SGD((float)sgd.LearningRate, (float)sgd.Momentum, (float)sgd.WeightDecay, sgd.Nesterov);
+        }
+
+        /***************************************************/
+
+        public static k.Optimizers.Adam ToBHom(Adam adam)
+        {
+            return new k.Optimizers.Adam((float)adam.LearningRate, (float)adam.Beta1, (float)adam.Beta2, null, (float)adam.WeightDecay, false);
         }
 
         /***************************************************/
