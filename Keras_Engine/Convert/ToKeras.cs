@@ -133,9 +133,44 @@ namespace BH.Engine.Keras
 
         /***************************************************/
 
+        public static k.Layers.LogSigmoid ToKeras(this LogSigmoid logSigmoid)
+        {
+            return new k.Layers.LogSigmoid();
+        }
+
+        /***************************************************/
+
+        public static k.Layers.LogSoftmax ToKeras(this LogSoftmax logSoftmax)
+        {
+            return new k.Layers.LogSoftmax(logSoftmax.Dimension);
+        }
+
+        /***************************************************/
+
         public static k.Layers.ReLU ToKeras(this ReLU relu)
         {
             return new k.Layers.ReLU();
+        }
+
+        /***************************************************/
+
+        public static k.Layers.Sigmoid ToKeras(this Sigmoid sigmoid)
+        {
+            return new k.Layers.Sigmoid();
+        }
+
+        /***************************************************/
+
+        public static k.Layers.Softmax ToKeras(this Softmax softmax)
+        {
+            return new k.Layers.Softmax(softmax.Dimension);
+        }
+
+        /***************************************************/
+
+        public static k.Layers.Tanh ToKeras(this Tanh tanh)
+        {
+            return new k.Layers.Tanh();
         }
 
 

@@ -64,7 +64,7 @@ namespace BH.Engine.Keras
 
         public static Reduce FromKeras(string reduction)
         {
-            switch(reduction)
+            switch (reduction)
             {
                 case "auto":
                     return Reduce.Sum;
@@ -78,6 +78,7 @@ namespace BH.Engine.Keras
                     return Reduce.No;
             }
         }
+
 
         /***************************************************/
         /**** Public Methods - Activations              ****/
@@ -93,17 +94,35 @@ namespace BH.Engine.Keras
 
         /***************************************************/
 
-        public static ReLU FromKeras(this k.Layers.ReLU leakyRelu)
+        public static LogSigmoid FromKeras(this k.Layers.LogSigmoid logSigmoid)
+        {
+            return new LogSigmoid();
+        }
+
+        /***************************************************/
+
+        public static LogSoftmax FromKeras(this k.Layers.LogSoftmax logSoftmax)
+        {
+            return new LogSoftmax()
+            {
+                // This is not possible since tf.nn.log_softmax is a function and does not store parameters
+                //Dimension = (int)logSoftmax.Parameters["axis"]  
+            };
+        }
+
+        /***************************************************/
+
+        public static ReLU FromKeras(this k.Layers.ReLU relu)
         {
             return new ReLU();
         }
 
         /***************************************************/
 
-        //public static Sigmoid FromKeras(this k.Layers.Sigmoid leakyRelu)
-        //{
-        //    return new Sigmoid();
-        //}
+        public static Sigmoid FromKeras(this k.Layers.Sigmoid sigmoid)
+        {
+            return new Sigmoid();
+        }
 
         /***************************************************/
 
@@ -117,11 +136,10 @@ namespace BH.Engine.Keras
 
         /***************************************************/
 
-        //public static Tanh FromKeras(this k.Layers.Tanh tanh)
-        //{
-        //    return new Tanh();
-        //}
-
+        public static Tanh FromKeras(this k.Layers.Tanh tanh)
+        {
+            return new Tanh();
+        }
 
 
         /***************************************************/
@@ -140,7 +158,7 @@ namespace BH.Engine.Keras
 
         public static BinaryCrossEntropy FromKeras(this k.Layers.BinaryCrossentropy bce)
         {
-            return new BinaryCrossEntropy() 
+            return new BinaryCrossEntropy()
             {
                 Reduce = FromKeras((bce.Parameters["reduction"] as string)),
             };
@@ -177,7 +195,7 @@ namespace BH.Engine.Keras
         }
 
         /***************************************************/
-        
+
         public static NegativeLogLikelihood FromKeras(this k.Layers.NegLogLikelihood nll)
         {
             return new NegativeLogLikelihood()
@@ -290,7 +308,7 @@ namespace BH.Engine.Keras
             Engine.Reflection.Compute.RecordError($"No Convert method found for {fallback?.GetType()}");
             return null;
         }
-        
+
         /***************************************************/
     }
 }

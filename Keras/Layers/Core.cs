@@ -79,26 +79,6 @@
     }
 
     /// <summary>
-    /// Applies an activation function to an output.
-    /// </summary>
-    /// <seealso cref="Keras.Layers.BaseLayer" />
-    public class Activation : BaseLayer
-    {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Activation"/> class.
-        /// </summary>
-        /// <param name="act">name of activation function to use (see: activations), or alternatively, a Theano or TensorFlow operation.</param>
-        /// <param name="input_shape">Arbitrary. Use the keyword argument input_shape (tuple of integers, does not include the samples axis) when using this layer as the first layer in a model.</param>
-        public Activation(string act, Shape input_shape = null)
-        {
-            Parameters["activation"] = act;
-            Parameters["input_shape"] = input_shape;
-            PyInstance = Keras.keras.layers.Activation;
-            Init();
-        }
-    }
-
-    /// <summary>
     /// Applies Dropout to the input.
     /// Dropout consists in randomly setting a fraction rate of input units to 0 at each update during training time, which helps prevent overfitting.
     /// </summary>
