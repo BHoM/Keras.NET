@@ -1,9 +1,29 @@
-﻿using System;
+﻿using Python.Runtime;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Keras.Layers
 {
+    /// <summary>
+    /// Applies an activation function to an output.
+    /// </summary>
+    /// <seealso cref="Keras.Layers.BaseLayer" />
+    public class Activation : BaseLayer
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LeakyReLU"/> class.
+        /// </summary>
+        /// <param name="alpha">float >= 0. Negative slope coefficient.</param>
+        public Activation(PyObject activation)
+        {
+            Parameters["activation"] = activation;
+
+            PyInstance = Keras.keras.layers.Activation;
+            Init();
+        }
+    }
+
     /// <summary>
     /// Leaky version of a Rectified Linear Unit.
     /// It allows a small gradient when the unit is not active: f(x) = alpha* x for x< 0, f(x) = x for x >= 0.
@@ -38,7 +58,7 @@ namespace Keras.Layers
         /// <param name="alpha_regularizer">regularizer for the weights.</param>
         /// <param name="alpha_constraint">constraint for the weights.</param>
         /// <param name="shared_axes">the axes along which to share learnable parameters for the activation function. For example, if the incoming feature maps are from a 2D convolution with output shape (batch, height, width, channels), and you wish to share parameters across space so that each filter only has one set of parameters, set shared_axes=[1, 2].</param>
-        public PReLU(string alpha_initializer= "zeros", string alpha_regularizer= "", string alpha_constraint= "", int[] shared_axes= null)
+        public PReLU(string alpha_initializer = "zeros", string alpha_regularizer = "", string alpha_constraint = "", int[] shared_axes = null)
         {
             Parameters["alpha_initializer"] = alpha_initializer;
             Parameters["alpha_regularizer"] = alpha_regularizer;
@@ -110,6 +130,42 @@ namespace Keras.Layers
     }
 
     /// <summary>
+    /// Softmax activation function with logits. Uses the log-sum-exp trick for numerical stability.
+    /// </summary>
+    /// <seealso cref="Keras.Layers.BaseLayer" />
+    public class LogSoftmax : BaseLayer
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Softmax" /> class.
+        /// </summary>
+        /// <param name="axis"> Integer, axis along which the softmax normalization is applied.</param>
+        public LogSoftmax(int axis = -1)
+        {
+            Activation activation = new Activation(Keras.tensorflow.nn.log_softmax);
+
+            PyInstance = activation.PyInstance;
+        }
+    }
+
+    /// <summary>
+    /// Sigmoid activation function with logits. Uses the log-sum-exp trick for numerical stability.
+    /// </summary>
+    /// <seealso cref="Keras.Layers.BaseLayer" />
+    public class LogSigmoid : BaseLayer
+    {
+        /// <summary>
+        /// Initializes a new instance oyeah f the <see cref="Softmax" /> class.
+        /// </summary>
+        /// <param name="axis"> Integer, axis along which the softmax normalization is applied.</param>
+        public LogSigmoid()
+        {
+            Activation activation = new Activation(Keras.tensorflow.math.log_sigmoid);
+
+            PyInstance = activation.PyInstance;
+        }
+    }
+
+    /// <summary>
     /// Rectified Linear Unit activation function.
     /// With default values, it returns element-wise max(x, 0). 
     /// Otherwise, it follows: f(x) = max_value for x >= max_value, f(x) = x for threshold &lt;= x<max_value, f(x) = negative_slope* (x - threshold) otherwise.
@@ -123,7 +179,7 @@ namespace Keras.Layers
         /// <param name="max_value">float >= 0. Maximum activation value.</param>
         /// <param name="negative_slope">float >= 0. Negative slope coefficient.</param>
         /// <param name="threshold">float. Threshold value for thresholded activation.</param>
-        public ReLU(float? max_value= null, float negative_slope= 0, float threshold= 0)
+        public ReLU(float? max_value = null, float negative_slope = 0, float threshold = 0)
         {
             Parameters["max_value"] = max_value;
             Parameters["negative_slope"] = negative_slope;
@@ -144,10 +200,8 @@ namespace Keras.Layers
         /// </summary>
         public Sigmoid()
         {
-            Parameters["activation"] = Keras.keras.activations.sigmoid;
-
-            PyInstance = Keras.keras.layers.Activation;
-            Init();            
+            Activation activation = new Activation(Keras.keras.activations.sigmoid);
+            PyInstance = activation.PyInstance;
         }
     }
 
@@ -161,10 +215,8 @@ namespace Keras.Layers
         /// </summary>
         public Tanh()
         {
-            Parameters["activation"] = Keras.keras.activations.tanh;
-
-            PyInstance = Keras.keras.layers.Activation;
-            Init();
+            Activation activation = new Activation(Keras.keras.activations.tanh);
+            PyInstance = activation.PyInstance;
         }
     }
 }
