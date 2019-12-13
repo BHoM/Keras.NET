@@ -30,6 +30,7 @@ namespace Keras
         {
             Installer.SetupPython().Wait();
             PythonEngine.Initialize();
+            TryInstall("pillow");
             TryInstall("tensorflow", "2.0");
             return Py.Import("tensorflow.keras");
         });
@@ -140,6 +141,7 @@ namespace Keras
 
             return new PyList(array);
         }
+
 
         /***************************************************/
         /**** Private Methods                           ****/
