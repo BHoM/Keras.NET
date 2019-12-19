@@ -1,7 +1,7 @@
 ﻿using Keras.Utils;
 using Numpy;
 using Numpy.Models;
-using Python.Included;
+using BH.Engine.Python;
 using Python.Runtime;
 using System;
 
@@ -28,8 +28,8 @@ namespace Keras
 
         private static Lazy<PyObject> _keras = new Lazy<PyObject>(() =>
         {
-            Installer.SetupPython().Wait();
-            PythonEngine.Initialize();
+            Compute.Install().Wait();
+            Compute.TryInitialise();
             TryInstall("pillow");
             TryInstall("tensorflow", "2.0");
             return Py.Import("tensorflow.keras");
@@ -39,8 +39,9 @@ namespace Keras
 
         private static Lazy<PyObject> _tensorflow = new Lazy<PyObject>(() =>
         {
-            Installer.SetupPython().Wait();
-            PythonEngine.Initialize();
+            Compute.Install().Wait();
+            Compute.TryInitialise();
+            TryInstall("pillow");
             TryInstall("tensorflow", "2.0");
             return Py.Import("tensorflow");
         });
@@ -151,7 +152,7 @@ namespace Keras
         {
             try
             {
-                Python.Included.Installer.PipInstallModule(module, version);
+                Compute.PipInstall(module, version);
                 Py.Import(module);
                 return true;
             }
