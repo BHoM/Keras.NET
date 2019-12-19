@@ -29,7 +29,7 @@ namespace Keras
         private static Lazy<PyObject> _keras = new Lazy<PyObject>(() =>
         {
             Compute.Install().Wait();
-            Compute.TryInitialise();
+            PythonEngine.Initialize();
             TryInstall("pillow");
             TryInstall("tensorflow", "2.0");
             return Py.Import("tensorflow.keras");
@@ -40,7 +40,7 @@ namespace Keras
         private static Lazy<PyObject> _tensorflow = new Lazy<PyObject>(() =>
         {
             Compute.Install().Wait();
-            Compute.TryInitialise();
+            PythonEngine.Initialize();
             TryInstall("pillow");
             TryInstall("tensorflow", "2.0");
             return Py.Import("tensorflow");
