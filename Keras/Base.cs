@@ -53,16 +53,6 @@ namespace Keras
             return PyInstance;
         }
 
-        //public static PyObject InvokeStaticMethod(dynamic caller, string method, params object[] parameters)
-        //{
-        //    var pyargs = ToTuple(parameters);
-        //    var kwargs = new PyDict();
-        //    if (parameters.Length > 0)
-        //        return caller.InvokeMethod(method, pyargs, kwargs);
-        //    else
-        //        return caller.InvokeMethod(method, null, null);
-        //}
-
         public static PyObject InvokeStaticMethod(dynamic caller, string method, Dictionary<string, object> args)
         {
             var pyargs = Keras.ToTuple(new object[]
