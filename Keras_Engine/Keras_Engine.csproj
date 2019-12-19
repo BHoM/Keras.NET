@@ -76,11 +76,16 @@
       <HintPath>..\..\BHoM\Build\DeepLearning_oM.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Python.Included, Version=3.7.9.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BH.UI.Python.Included.3.7.3.9-alpha\lib\netstandard2.0\Python.Included.dll</HintPath>
+    <Reference Include="Numpy, Version=3.7.1.16, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Numpy_Toolkit\Build\Numpy.dll</HintPath>
     </Reference>
     <Reference Include="Python.Runtime, Version=3.7.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BH.UI.Python.Runtime.3.7.4-alpha\lib\netstandard2.0\Python.Runtime.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Python_Toolkit\Build\Python.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Python_Engine">
+      <HintPath>..\..\Python_Toolkit\Build\Python_Engine.dll</HintPath>
     </Reference>
     <Reference Include="Reflection_Engine">
       <HintPath>..\..\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>

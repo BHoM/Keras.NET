@@ -45,14 +45,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BH.UI.Python.Included" Version="3.7.3.9-alpha" />
-    <PackageReference Include="BH.UI.Python.Runtime" Version="3.7.4-alpha" />
     <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Numpy">
       <HintPath>..\..\Numpy_Toolkit\Build\Numpy.dll</HintPath>
+    </Reference>
+    <Reference Include="Python.Runtime">
+      <HintPath>..\..\Python_Toolkit\Build\Python.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Python_Engine">
+      <HintPath>..\..\Python_Toolkit\Build\Python_Engine.dll</HintPath>
     </Reference>
   </ItemGroup>
 
