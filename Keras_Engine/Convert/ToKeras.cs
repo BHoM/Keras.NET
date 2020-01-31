@@ -63,6 +63,40 @@ namespace BH.Engine.Keras
         }
 
         /***************************************************/
+
+        public static string ToKeras(this ImageFormat imageFormat)
+        {
+            switch(imageFormat)
+            {
+                case ImageFormat.ChannelFirst:
+                    return "channels_first";
+                case ImageFormat.ChannelLast:
+                    return "channels_last";
+                case ImageFormat.GreyScale:
+                    return "greyscale";
+                default:
+                    return ImageFormat.ChannelFirst.ToKeras();
+            }
+        }
+
+        /***************************************************/
+
+        public static string ToKeras(this InterpolationMethod interpolation)
+        {
+            switch(interpolation)
+            {
+                case InterpolationMethod.Nearest:
+                    return "nearest";
+                case InterpolationMethod.Bilinear:
+                    return "bilinear";
+                case InterpolationMethod.Bicubic:
+                    return "bicubic";
+                default:
+                    return InterpolationMethod.Nearest.ToKeras();
+            }
+        }
+
+        /***************************************************/
         /**** Public Methods - Shape                    ****/
         /***************************************************/
 

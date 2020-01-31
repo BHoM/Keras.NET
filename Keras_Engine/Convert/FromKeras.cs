@@ -21,11 +21,9 @@
  */
 
 using System;
-using System.Collections.Generic;
 using k = Keras;
 using BH.oM.DeepLearning.Layers;
 using BH.oM.DeepLearning.Activations;
-using System.Linq;
 using BH.oM.DeepLearning;
 using BH.oM.DeepLearning.Losses;
 using BH.oM.DeepLearning.Optimisers;
@@ -63,7 +61,7 @@ namespace BH.Engine.Keras
         /**** Public Methods - Enums                    ****/
         /***************************************************/
 
-        public static Reduce FromKeras(string reduction)
+        public static Reduce FromKerasReduction(string reduction)
         {
             switch (reduction)
             {
@@ -77,6 +75,34 @@ namespace BH.Engine.Keras
                     return Reduce.No;
                 default:
                     return Reduce.No;
+            }
+        }
+
+        /***************************************************/
+
+        public static ImageFormat FromKerasDataFormat(string dataFormat)
+        {
+            switch(dataFormat)
+            {
+                case "channels_last":
+                    return ImageFormat.ChannelLast;
+                default:
+                    return ImageFormat.ChannelFirst;
+            }
+        }
+
+        /***************************************************/
+
+        public static InterpolationMethod FromKerasInterpolationMethod(string interpolation)
+        {
+            switch(interpolation)
+            {
+                case "bilinear":
+                    return InterpolationMethod.Bilinear;
+                case "bicubic":
+                    return InterpolationMethod.Bicubic;
+                default:
+                    return InterpolationMethod.Nearest;
             }
         }
 
@@ -151,7 +177,7 @@ namespace BH.Engine.Keras
         {
             return new BCEWithSigmoid()
             {
-                Reduce = FromKeras((bceWithSigmoid.Parameters["reduction"] as string)),
+                Reduce = FromKerasReduction((bceWithSigmoid.Parameters["reduction"] as string)),
             };
         }
 
@@ -161,7 +187,7 @@ namespace BH.Engine.Keras
         {
             return new BinaryCrossEntropy()
             {
-                Reduce = FromKeras((bce.Parameters["reduction"] as string)),
+                Reduce = FromKerasReduction((bce.Parameters["reduction"] as string)),
             };
         }
 
@@ -171,7 +197,7 @@ namespace BH.Engine.Keras
         {
             return new CrossEntropy()
             {
-                Reduce = FromKeras((crossEntropy.Parameters["reduction"] as string)),
+                Reduce = FromKerasReduction((crossEntropy.Parameters["reduction"] as string)),
             };
         }
 
@@ -181,7 +207,7 @@ namespace BH.Engine.Keras
         {
             return new L1()
             {
-                Reduce = FromKeras((mae.Parameters["reduction"] as string))
+                Reduce = FromKerasReduction((mae.Parameters["reduction"] as string))
             };
         }
 
@@ -191,7 +217,7 @@ namespace BH.Engine.Keras
         {
             return new MeanSquareError()
             {
-                Reduce = FromKeras((mse.Parameters["reduction"] as string))
+                Reduce = FromKerasReduction((mse.Parameters["reduction"] as string))
             };
         }
 
@@ -201,7 +227,7 @@ namespace BH.Engine.Keras
         {
             return new NegativeLogLikelihood()
             {
-                Reduce = FromKeras((nll.Parameters["reduction"] as string)),
+                Reduce = FromKerasReduction((nll.Parameters["reduction"] as string)),
             };
         }
 
