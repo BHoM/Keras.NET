@@ -54,7 +54,7 @@ namespace Keras.PreProcessing.Image
             Parameters["rotation_range"] = rotation_range;
             Parameters["width_shift_range"] = width_shift_range;
             Parameters["height_shift_range"] = height_shift_range;
-            Parameters["brightness_range"] = brightness_range;
+            Parameters["brightness_range"] = brightness_range ?? None;
             Parameters["shear_range"] = shear_range;
             Parameters["zoom_range"] = zoom_range;
             Parameters["channel_shift_range"] = channel_shift_range;
