@@ -79,13 +79,16 @@
     <Reference Include="Numpy, Version=3.7.1.16, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Numpy_Toolkit\Build\Numpy.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Python.Runtime, Version=3.7.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Python_Toolkit\Build\Python.Runtime.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Python_Engine">
       <HintPath>..\..\Python_Toolkit\Build\Python_Engine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Reflection_Engine">
       <HintPath>..\..\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>
